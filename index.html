@@ -14,7 +14,17 @@
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
     .font-grotesk {
-      font-family: 'Fabric Grotesk', 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Menyembunyikan scrollbar tapi tetap bisa di-scroll */
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
   </style>
 </head>
@@ -22,7 +32,8 @@
 <body class="bg-gray-100 text-gray-800 font-grotesk antialiased selection:bg-blue-600 selection:text-white relative">
 
   <!-- TOMBOL WHATSAPP MENGAMBANG (FLOATING) -->
-  <a href="#" target="_blank"
+  <a href="https://wa.me/6285931100080?text=Halo%20KicksLokal,%20saya%20tertarik%20dengan%20produk%20sepatu%20Anda."
+    target="_blank"
     class="fixed bottom-6 right-6 z-40 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110">
     <ion-icon name="logo-whatsapp" class="text-3xl"></ion-icon>
   </a>
@@ -35,20 +46,34 @@
         <span class="text-2xl font-black tracking-wider text-gray-900">KicksLokal</span>
       </div>
 
+      <!-- Desktop Menu -->
       <nav class="hidden md:flex items-center gap-8 font-medium text-gray-600">
         <a href="#" class="text-blue-600 font-semibold">Beranda</a>
         <a href="#katalog" class="hover:text-blue-600 transition-colors">Katalog</a>
         <a href="#fitur" class="hover:text-blue-600 transition-colors">Keunggulan</a>
         <a href="#tentang" class="hover:text-blue-600 transition-colors">Tentang Kami</a>
       </nav>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="md:hidden text-3xl text-gray-800 focus:outline-none">
+        <ion-icon name="menu-outline"></ion-icon>
+      </button>
     </div>
+
+    <!-- Mobile Menu Dropdown (Hidden by default) -->
+    <nav id="mobile-menu"
+      class="hidden md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-4 space-y-3 shadow-lg absolute w-full left-0">
+      <a href="#" class="block text-blue-600 font-semibold py-2">Beranda</a>
+      <a href="#katalog" class="block text-gray-600 hover:text-blue-600 py-2">Katalog</a>
+      <a href="#fitur" class="block text-gray-600 hover:text-blue-600 py-2">Keunggulan</a>
+      <a href="#tentang" class="block text-gray-600 hover:text-blue-600 py-2">Tentang Kami</a>
+    </nav>
   </header>
 
   <!-- HERO SECTION -->
   <section class="relative bg-gray-900 text-white overflow-hidden">
-    <div class="absolute inset-0 opacity-40">
-      <img src="sepatu1.jpeg" alt="Hero Background" class="w-full h-full object-cover">
-    </div>
+    <div class="absolute inset-0 opacity-40 bg-cover bg-center"
+      style="background-image: url('https://images.unsplash.com/photo-1556906781-9a412961c28c?w=1200&q=80');"></div>
     <div class="absolute inset-0 bg-gradient-to-r from-gray-950 via-gray-900/80 to-transparent"></div>
 
     <div
@@ -103,714 +128,43 @@
   <!-- KATALOG PRODUK -->
   <section id="katalog" class="py-16 bg-white border-t border-gray-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-end mb-12">
+      <div class="flex flex-col md:flex-row md:justify-between md:items-end mb-10 gap-4">
         <div>
-          <h2 class="text-3xl font-black text-gray-900 mt-1">Lets try!</h2>
+          <h2 class="text-3xl font-black text-gray-900 mt-1">Koleksi Terbaru</h2>
+          <p class="text-gray-500 mt-2">Pilihan sepatu terbaik minggu ini.</p>
+        </div>
+
+        <!-- Filter Kategori Sederhana -->
+        <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+          <button
+            class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap">Semua</button>
+          <button
+            class="bg-gray-100 text-gray-600 hover:bg-gray-200 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap">Sneakers</button>
+          <button
+            class="bg-gray-100 text-gray-600 hover:bg-gray-200 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap">Running</button>
+          <button
+            class="bg-gray-100 text-gray-600 hover:bg-gray-200 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap">Casual</button>
         </div>
       </div>
 
-      <!-- Grid Produk -->
+      <!-- Grid 10 Produk -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
-        <!-- Produk 1 -->
+        <!-- Produk 1: s(1).jpeg -->
         <div
           class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           <div>
-            <div class="relative bg-gray-200 rounded-xl overflow-hidden mb-4 h-60 flex items-center justify-center">
-              <img src="sepatu1.jpeg" alt="Skechers Claremont"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+              <img src="s (1).jpeg" alt="Skechers Equalizer 6.0 - Stoaver"
+                class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
               <span
-                class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Original</span>
+                class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Featured</span>
             </div>
-            <span class="text-xs text-gray-500 font-medium">Casual / Unisex</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Skechers Claremont - Optical Black</h3>
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">Ultimate comfort, desain optical black yang elegan</p>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Stok Ukuran Ready:</p>
-              <div class="flex gap-1.5 flex-wrap">
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">40</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">41</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">42</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">43</span>
-              </div>
-            </div>
-          </div>
-          <div class="pt-3 border-t border-gray-200/60">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs text-gray-400 line-through">Rp 1.199.000</span>
-              <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded">Hemat Rp 399rb</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-xl font-black text-blue-600">Rp 800.000</span>
-                <span class="block text-[10px] text-green-600 font-semibold">Bisa Nego via Chat</span>
-              </div>
-              <a href="#"
-                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-md">
-                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Nego / Beli
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Produk 2 -->
-        <div
-          class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="relative bg-gray-200 rounded-xl overflow-hidden mb-4 h-60 flex items-center justify-center">
-              <img src="sepatu2.jpeg" alt="Nike Zoom Rival Fly 4 Sail Beige"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span
-                class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Original</span>
-            </div>
-            <span class="text-xs text-gray-500 font-medium">Running / Pria</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Nike Zoom Rival Fly 4 Sail Beige</h3>
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">Air Zoom cushioning, responsif dan ringan</p>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Stok Ukuran Ready:</p>
-              <div class="flex gap-1.5 flex-wrap">
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">42</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">42.5</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">43</span>
-              </div>
-            </div>
-          </div>
-          <div class="pt-3 border-t border-gray-200/60">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs text-gray-400 line-through">Rp 1.599.000</span>
-              <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded">Hemat Rp 649rb</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-xl font-black text-blue-600">Rp 950.000</span>
-                <span class="block text-[10px] text-green-600 font-semibold">Bisa Nego via Chat</span>
-              </div>
-              <a href="#"
-                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-md">
-                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Nego / Beli
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Produk 3 -->
-        <div
-          class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="relative bg-gray-200 rounded-xl overflow-hidden mb-4 h-60 flex items-center justify-center">
-              <img src="sepatu3.jpeg" alt="Nike Zoom Rival Fly 4 White Red"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span
-                class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Original</span>
-            </div>
-            <span class="text-xs text-gray-500 font-medium">Running / Pria</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Nike Zoom Rival Fly 4 White Red</h3>
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">High performance running shoes, desain dinamis</p>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Stok Ukuran Ready:</p>
-              <div class="flex gap-1.5 flex-wrap">
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">42</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">42.5</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">43</span>
-              </div>
-            </div>
-          </div>
-          <div class="pt-3 border-t border-gray-200/60">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs text-gray-400 line-through">Rp 1.599.000</span>
-              <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded">Hemat Rp 699rb</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-xl font-black text-blue-600">Rp 900.000</span>
-                <span class="block text-[10px] text-green-600 font-semibold">Bisa Nego via Chat</span>
-              </div>
-              <a href="#"
-                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-md">
-                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Nego / Beli
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Produk 4 -->
-        <div
-          class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="relative bg-gray-200 rounded-xl overflow-hidden mb-4 h-60 flex items-center justify-center">
-              <img src="sepatu4.jpeg" alt="Diadora Spinta Grey"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span
-                class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Running
-                Special</span>
-            </div>
-            <span class="text-xs text-gray-500 font-medium">Running / Unisex</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Diadora Spinta Grey</h3>
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">Comfort running special edition, ringan & stabil</p>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Stok Ukuran Ready:</p>
-              <div class="flex gap-1.5 flex-wrap">
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">39</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">40</span>
-              </div>
-            </div>
-          </div>
-          <div class="pt-3 border-t border-gray-200/60">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs text-gray-400 line-through">Rp 599.000</span>
-              <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded">Hemat Rp 99rb</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-xl font-black text-blue-600">Rp 500.000</span>
-                <span class="block text-[10px] text-green-600 font-semibold">Bisa Nego via Chat</span>
-              </div>
-              <a href="#"
-                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-md">
-                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Nego / Beli
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Produk 5 -->
-        <div
-          class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="relative bg-gray-200 rounded-xl overflow-hidden mb-4 h-60 flex items-center justify-center">
-              <img src="sepatu5.jpeg" alt="Nike Revolution 8"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Limited
-                Stok</span>
-            </div>
-            <span class="text-xs text-gray-500 font-medium">Running / Lifestyle</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Nike Revolution 8</h3>
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">Bantalan empuk maksimal untuk lari dan harian</p>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Stok Ukuran Ready:</p>
-              <div class="flex gap-1.5 flex-wrap">
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">37.5</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">38</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">38.5</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">39</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">40</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">40.5</span>
-              </div>
-            </div>
-          </div>
-          <div class="pt-3 border-t border-gray-200/60">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs text-gray-400 line-through">Rp 989.000</span>
-              <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded">Hemat Rp 239rb</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-xl font-black text-blue-600">Rp 750.000</span>
-                <span class="block text-[10px] text-green-600 font-semibold">Bisa Nego via Chat</span>
-              </div>
-              <a href="#"
-                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-md">
-                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Nego / Beli
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Produk 6 -->
-        <div
-          class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="relative bg-gray-200 rounded-xl overflow-hidden mb-4 h-60 flex items-center justify-center">
-              <img src="sepatu6.jpg" alt="Skechers Go Walk 8 - Nova Black"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span
-                class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Original</span>
-            </div>
-            <span class="text-xs text-gray-500 font-medium">Women Special</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Skechers Go Walk 8 - Nova Black</h3>
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">Ultimate comfort, slip-ins series</p>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Stok Ukuran Ready:</p>
-              <div class="flex gap-1.5 flex-wrap">
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">37</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">38</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">38.5</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">40</span>
-              </div>
-            </div>
-          </div>
-          <div class="pt-3 border-t border-gray-200/60">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs text-gray-400 line-through">Rp 1.499.000</span>
-              <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded">Hemat Rp 849rb</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-xl font-black text-blue-600">Rp 650.000</span>
-                <span class="block text-[10px] text-green-600 font-semibold">Bisa Nego via Chat</span>
-              </div>
-              <a href="#"
-                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-md">
-                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Nego / Beli
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Produk 7 -->
-        <div
-          class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="relative bg-gray-200 rounded-xl overflow-hidden mb-4 h-60 flex items-center justify-center">
-              <img src="sepatu7.jpg" alt="Skechers Arch Vista White"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span
-                class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Original</span>
-            </div>
-            <span class="text-xs text-gray-500 font-medium">Womens Special</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Skechers Arch Vista White</h3>
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">Arch Fit support, kenyamanan optimal</p>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Stok Ukuran Ready:</p>
-              <div class="flex gap-1.5 flex-wrap">
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">36</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">38</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">39</span>
-              </div>
-            </div>
-          </div>
-          <div class="pt-3 border-t border-gray-200/60">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs text-gray-400 line-through">Rp 1.299.000</span>
-              <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded">Hemat Rp 649rb</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-xl font-black text-blue-600">Rp 650.000</span>
-                <span class="block text-[10px] text-green-600 font-semibold">Bisa Nego via Chat</span>
-              </div>
-              <a href="#"
-                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-md">
-                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Nego / Beli
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Produk 8 -->
-        <div
-          class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="relative bg-gray-200 rounded-xl overflow-hidden mb-4 h-60 flex items-center justify-center">
-              <img src="sepatu8.jpeg" alt="Adidas Galaxy 6 Full Black"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span
-                class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Original</span>
-            </div>
-            <span class="text-xs text-gray-500 font-medium">Full Black Special</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Adidas Galaxy 6 Full Black</h3>
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">Cloudfoam midsole, ringan & empuk</p>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Stok Ukuran Ready:</p>
-              <div class="flex gap-1.5 flex-wrap">
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">39
-                  1/3</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">40</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">40
-                  2/3</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">41
-                  1/3</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">42</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">42
-                  2/3</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">43
-                  1/3</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">44</span>
-              </div>
-            </div>
-          </div>
-          <div class="pt-3 border-t border-gray-200/60">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs text-gray-400 line-through">Rp 800.000</span>
-              <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded">Hemat Rp 50rb</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-xl font-black text-blue-600">Rp 750.000</span>
-                <span class="block text-[10px] text-green-600 font-semibold">Bisa Nego via Chat</span>
-              </div>
-              <a href="#"
-                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-md">
-                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Nego / Beli
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Produk 9 -->
-        <div
-          class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="relative bg-gray-200 rounded-xl overflow-hidden mb-4 h-60 flex items-center justify-center">
-              <img src="sepatu9.jpeg" alt="Diadora Rallies Beige"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span
-                class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Running
-                Special</span>
-            </div>
-            <span class="text-xs text-gray-500 font-medium">Running / Casual</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Diadora Rallies Beige</h3>
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">Desain stylish warna beige lembut</p>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Stok Ukuran Ready:</p>
-              <div class="flex gap-1.5 flex-wrap">
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">37</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">38</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">39</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">40</span>
-              </div>
-            </div>
-          </div>
-          <div class="pt-3 border-t border-gray-200/60">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs text-gray-400 opacity-0">-</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-xl font-black text-blue-600">Rp 450.000</span>
-                <span class="block text-[10px] text-green-600 font-semibold">Special Price</span>
-              </div>
-              <a href="#"
-                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-md">
-                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Nego / Beli
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Produk 10 -->
-        <div
-          class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="relative bg-gray-200 rounded-xl overflow-hidden mb-4 h-60 flex items-center justify-center">
-              <img src="sepatu10 (2).jpeg" alt="Skechers Go Walk - Serenity"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span
-                class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Original</span>
-            </div>
-            <span class="text-xs text-gray-500 font-medium">Walking / Comfort</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Skechers Go Walk - Serenity</h3>
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">Kenyamanan tingkat tinggi untuk jalan kaki</p>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Stok Ukuran Ready:</p>
-              <div class="flex gap-1.5 flex-wrap">
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">37</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">37.5</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">38</span>
-              </div>
-            </div>
-          </div>
-          <div class="pt-3 border-t border-gray-200/60">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs text-gray-400 line-through">Rp 1.599.000</span>
-              <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded">Hemat Rp 949rb</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-xl font-black text-blue-600">Rp 650.000</span>
-                <span class="block text-[10px] text-green-600 font-semibold">Bisa Nego via Chat</span>
-              </div>
-              <a href="#"
-                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-md">
-                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Nego / Beli
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Produk 11 -->
-        <div
-          class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="relative bg-gray-200 rounded-xl overflow-hidden mb-4 h-60 flex items-center justify-center">
-              <img src="sepatu11.jpeg" alt="Skechers Dlux Walker 2.0 - Classic Stroll"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span
-                class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Original</span>
-            </div>
-            <span class="text-xs text-gray-500 font-medium">Walking / Casual</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Skechers Dlux Walker 2.0 - Classic Stroll</h3>
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">Dlux Walker 2.0 sol empuk maksimal</p>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Stok Ukuran Ready:</p>
-              <div class="flex gap-1.5 flex-wrap">
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">36</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">37</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">38</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">39</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">40</span>
-              </div>
-            </div>
-          </div>
-          <div class="pt-3 border-t border-gray-200/60">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs text-gray-400 line-through">Rp 1.299.000</span>
-              <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded">Hemat Rp 649rb</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-xl font-black text-blue-600">Rp 650.000</span>
-                <span class="block text-[10px] text-green-600 font-semibold">Bisa Nego via Chat</span>
-              </div>
-              <a href="#"
-                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-md">
-                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Nego / Beli
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Produk 12 -->
-        <div
-          class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="relative bg-gray-200 rounded-xl overflow-hidden mb-4 h-60 flex items-center justify-center">
-              <img src="sepatu12.jpeg" alt="Skechers Geno Plus - Phill"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span
-                class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Original</span>
-            </div>
-            <span class="text-xs text-gray-500 font-medium">Casual / Mens</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Skechers Geno Plus - Phill</h3>
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">Geno Plus edition, ringan dan trendi</p>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Stok Ukuran Ready:</p>
-              <div class="flex gap-1.5 flex-wrap">
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">40</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">41</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">42</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">43</span>
-              </div>
-            </div>
-          </div>
-          <div class="pt-3 border-t border-gray-200/60">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs text-gray-400 line-through">Rp 1.199.000</span>
-              <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded">Hemat Rp 549rb</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-xl font-black text-blue-600">Rp 650.000</span>
-                <span class="block text-[10px] text-green-600 font-semibold">Bisa Nego via Chat</span>
-              </div>
-              <a href="#"
-                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-md">
-                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Nego / Beli
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Produk 13 -->
-        <div
-          class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="relative bg-gray-200 rounded-xl overflow-hidden mb-4 h-60 flex items-center justify-center">
-              <img src="sepatu13.jpeg" alt="Diadora Serion Black"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Slip
-                On</span>
-            </div>
-            <span class="text-xs text-gray-500 font-medium">Slip On / Anti Ribet</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Diadora Serion Black</h3>
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">Model slip-on anti ribet, mudah dipakai</p>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Stok Ukuran Ready:</p>
-              <div class="flex gap-1.5 flex-wrap">
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">38</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">39</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">40</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">41</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">42</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">43</span>
-              </div>
-            </div>
-          </div>
-          <div class="pt-3 border-t border-gray-200/60">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs text-gray-400 line-through">Rp 599.000</span>
-              <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded">Hemat Rp 149rb</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-xl font-black text-blue-600">Rp 450.000</span>
-                <span class="block text-[10px] text-green-600 font-semibold">Bisa Nego via Chat</span>
-              </div>
-              <a href="#"
-                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-md">
-                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Nego / Beli
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Produk 14 -->
-        <div
-          class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="relative bg-gray-200 rounded-xl overflow-hidden mb-4 h-60 flex items-center justify-center">
-              <img src="sepatu14.jpeg" alt="Diadora Speranza White"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Trail
-                Running</span>
-            </div>
-            <span class="text-xs text-gray-500 font-medium">Running Trail Special</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Diadora Speranza White</h3>
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">Special for running trail & outdoor activity</p>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Stok Ukuran Ready:</p>
-              <div class="flex gap-1.5 flex-wrap">
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">37</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">38</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">39</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">40</span>
-              </div>
-            </div>
-          </div>
-          <div class="pt-3 border-t border-gray-200/60">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs text-gray-400 opacity-0">-</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-xl font-black text-blue-600">Rp 450.000</span>
-                <span class="block text-[10px] text-green-600 font-semibold">Special Price</span>
-              </div>
-              <a href="#"
-                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-md">
-                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Nego / Beli
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Produk 15 -->
-        <div
-          class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="relative bg-gray-200 rounded-xl overflow-hidden mb-4 h-60 flex items-center justify-center">
-              <img src="sepatu15.jpeg" alt="Skechers Lite - Smooth"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span
-                class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Original</span>
-            </div>
-            <span class="text-xs text-gray-500 font-medium">Lite Weight / Casual</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Skechers Lite - Smooth</h3>
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">Super ringan, halus, dan nyaman dipakai</p>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Stok Ukuran Ready:</p>
-              <div class="flex gap-1.5 flex-wrap">
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">36</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">38</span>
-                <span
-                  class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">39</span>
-              </div>
-            </div>
-          </div>
-          <div class="pt-3 border-t border-gray-200/60">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs text-gray-400 line-through">Rp 1.299.000</span>
-              <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded">Hemat Rp 599rb</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-xl font-black text-blue-600">Rp 700.000</span>
-                <span class="block text-[10px] text-green-600 font-semibold">Bisa Nego via Chat</span>
-              </div>
-              <a href="#"
-                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-md">
-                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Nego / Beli
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- NEW PRODUK 16 -->
-        <div
-          class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="relative bg-gray-200 rounded-xl overflow-hidden mb-4 h-60 flex items-center justify-center">
-              <img src="a (1).jpeg" alt="Skechers Equalizer 6.0 - Stoaver"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span
-                class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Original</span>
-            </div>
-            <span class="text-xs text-gray-500 font-medium">Slip On / Casual[cite: 1]</span>
+            <span class="text-xs text-gray-500 font-medium">Skechers</span>
             <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Skechers Equalizer 6.0 - Stoaver</h3>
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">Full black special penganti pantopel[cite: 1]</p>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Stok Ukuran Ready:</p>
+
+            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 mb-1">Size Ready:</p>
               <div class="flex gap-1.5 flex-wrap">
                 <span
                   class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">42</span>
@@ -821,39 +175,34 @@
               </div>
             </div>
           </div>
-          <div class="pt-3 border-t border-gray-200/60">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs text-gray-400 line-through">Rp 1.499.000</span>
-              <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded">Hemat Rp 829rb</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-xl font-black text-blue-600">Rp 670.000</span>
-                <span class="block text-[10px] text-green-600 font-semibold">Bisa Nego via Chat</span>
-              </div>
-              <a href="#"
+          <div>
+            <div class="text-xs text-gray-400 line-through mb-0.5">Retail: Rp 1.499.000</div>
+            <div class="flex justify-between items-center pt-2 border-t border-gray-200/60">
+              <span class="text-xl font-black text-blue-600">Rp 570.000</span>
+              <a href="https://wa.me/6285931100080?text=Halo%20KicksLokal,%20saya%20mau%20pesan%20Skechers%20Equalizer%206.0%20-%20Stoaver"
+                target="_blank"
                 class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-md">
-                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Nego / Beli
+                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Beli
               </a>
             </div>
           </div>
         </div>
 
-        <!-- NEW PRODUK 17 -->
+        <!-- Produk 2: s(2).jpeg -->
         <div
           class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           <div>
-            <div class="relative bg-gray-200 rounded-xl overflow-hidden mb-4 h-60 flex items-center justify-center">
-              <img src="a (2).jpeg" alt="Skechers Bobs Moda Flex Taupe"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+              <img src="s (2).jpeg" alt="Skechers Bobs Moda Flex Taupe"
+                class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
               <span
-                class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Original</span>
+                class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Featured</span>
             </div>
-            <span class="text-xs text-gray-500 font-medium">Casual / Unisex</span>
+            <span class="text-xs text-gray-500 font-medium">Skechers</span>
             <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Skechers Bobs Moda Flex Taupe</h3>
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">Nyaman dan stylish sepanjang hari</p>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Stok Ukuran Ready:</p>
+
+            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 mb-1">Size Ready:</p>
               <div class="flex gap-1.5 flex-wrap">
                 <span
                   class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">40</span>
@@ -866,39 +215,34 @@
               </div>
             </div>
           </div>
-          <div class="pt-3 border-t border-gray-200/60">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs text-gray-400 line-through">Rp 1.299.000</span>
-              <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded">Hemat Rp 659rb</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-xl font-black text-blue-600">Rp 640.000</span>
-                <span class="block text-[10px] text-green-600 font-semibold">Bisa Nego via Chat</span>
-              </div>
-              <a href="#"
+          <div>
+            <div class="text-xs text-gray-400 line-through mb-0.5">Retail: Rp 1.299.000</div>
+            <div class="flex justify-between items-center pt-2 border-t border-gray-200/60">
+              <span class="text-xl font-black text-blue-600">Rp 540.000</span>
+              <a href="https://wa.me/6285931100080?text=Halo%20KicksLokal,%20saya%20mau%20pesan%20Skechers%20Bobs%20Moda%20Flex%20Taupe"
+                target="_blank"
                 class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-md">
-                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Nego / Beli
+                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Beli
               </a>
             </div>
           </div>
         </div>
 
-        <!-- NEW PRODUK 18 -->
+        <!-- Produk 3: s(3).jpeg -->
         <div
           class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           <div>
-            <div class="relative bg-gray-200 rounded-xl overflow-hidden mb-4 h-60 flex items-center justify-center">
-              <img src="a (3).jpeg" alt="Nike Downshifter 13 Guava ice"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">New
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+              <img src="s (3).jpeg" alt="Nike Downshifter 13 Guava ice"
+                class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
+              <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-lg">New
                 Release</span>
             </div>
-            <span class="text-xs text-gray-500 font-medium">Running / Women</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Nike Downshifter 13 Guava ice</h3>
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">Desain segar dengan warna Guava Ice</p>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Stok Ukuran Ready:</p>
+            <span class="text-xs text-gray-500 font-medium">Nike</span>
+            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Nike Downshifter 13 Guava Ice</h3>
+
+            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 mb-1">Size Ready:</p>
               <div class="flex gap-1.5 flex-wrap">
                 <span
                   class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">37.5</span>
@@ -913,39 +257,34 @@
               </div>
             </div>
           </div>
-          <div class="pt-3 border-t border-gray-200/60">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs text-gray-400 line-through">Rp 949.000</span>
-              <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded">Hemat Rp 299rb</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-xl font-black text-blue-600">Rp 650.000</span>
-                <span class="block text-[10px] text-green-600 font-semibold">Bisa Nego via Chat</span>
-              </div>
-              <a href="#"
+          <div>
+            <div class="text-xs text-gray-400 line-through mb-0.5">Retail: Rp 750.000</div>
+            <div class="flex justify-between items-center pt-2 border-t border-gray-200/60">
+              <span class="text-xl font-black text-blue-600">Rp 550.000</span>
+              <a href="https://wa.me/6285931100080?text=Halo%20KicksLokal,%20saya%20mau%20pesan%20Nike%20Downshifter%2013%20Guava%20Ice"
+                target="_blank"
                 class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-md">
-                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Nego / Beli
+                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Beli
               </a>
             </div>
           </div>
         </div>
 
-        <!-- NEW PRODUK 19 -->
+        <!-- Produk 4: s(4).jpeg -->
         <div
           class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           <div>
-            <div class="relative bg-gray-200 rounded-xl overflow-hidden mb-4 h-60 flex items-center justify-center">
-              <img src="a (4).jpeg" alt="Skechers Go Walk 8 - Day White"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+              <img src="s (4).jpeg" alt="Skechers Go Walk 8 - Day White"
+                class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
               <span
-                class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Original</span>
+                class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Featured</span>
             </div>
-            <span class="text-xs text-gray-500 font-medium">Walking / Unisex</span>
+            <span class="text-xs text-gray-500 font-medium">Skechers</span>
             <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Skechers Go Walk 8 - Day White</h3>
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">Kenyamanan esensial seri Go Walk</p>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Stok Ukuran Ready:</p>
+
+            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 mb-1">Size Ready:</p>
               <div class="flex gap-1.5 flex-wrap">
                 <span
                   class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">40</span>
@@ -956,39 +295,34 @@
               </div>
             </div>
           </div>
-          <div class="pt-3 border-t border-gray-200/60">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs text-gray-400 line-through">Rp 1.299.000</span>
-              <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded">Hemat Rp 659rb</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-xl font-black text-blue-600">Rp 640.000</span>
-                <span class="block text-[10px] text-green-600 font-semibold">Bisa Nego via Chat</span>
-              </div>
-              <a href="#"
+          <div>
+            <div class="text-xs text-gray-400 line-through mb-0.5">Retail: Rp 1.299.000</div>
+            <div class="flex justify-between items-center pt-2 border-t border-gray-200/60">
+              <span class="text-xl font-black text-blue-600">Rp 540.000</span>
+              <a href="https://wa.me/6285931100080?text=Halo%20KicksLokal,%20saya%20mau%20pesan%20Skechers%20Go%20Walk%208%20-%20Day%20White"
+                target="_blank"
                 class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-md">
-                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Nego / Beli
+                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Beli
               </a>
             </div>
           </div>
         </div>
 
-        <!-- NEW PRODUK 20 -->
+        <!-- Produk 5: s(5).jpeg -->
         <div
           class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           <div>
-            <div class="relative bg-gray-200 rounded-xl overflow-hidden mb-4 h-60 flex items-center justify-center">
-              <img src="a (5).jpeg" alt="Adidas EQ21 RUN"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">New
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+              <img src="s (5).jpeg" alt="Adidas EQ21 RUN"
+                class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
+              <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-lg">New
                 Arrival</span>
             </div>
-            <span class="text-xs text-gray-500 font-medium">Running / Men</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Adidas EQ21 RUN</h3>
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">Black special edition</p>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Stok Ukuran Ready:</p>
+            <span class="text-xs text-gray-500 font-medium">Adidas</span>
+            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Adidas EQ21 RUN Black Special</h3>
+
+            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 mb-1">Size Ready:</p>
               <div class="flex gap-1.5 flex-wrap">
                 <span
                   class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">40
@@ -1015,39 +349,34 @@
               </div>
             </div>
           </div>
-          <div class="pt-3 border-t border-gray-200/60">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs text-gray-400 line-through">Rp 1.300.000</span>
-              <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded">Hemat Rp 550rb</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-xl font-black text-blue-600">Rp 750.000</span>
-                <span class="block text-[10px] text-green-600 font-semibold">Bisa Nego via Chat</span>
-              </div>
-              <a href="#"
+          <div>
+            <div class="text-xs text-gray-400 line-through mb-0.5">Retail: Rp 1.300.000</div>
+            <div class="flex justify-between items-center pt-2 border-t border-gray-200/60">
+              <span class="text-xl font-black text-blue-600">Rp 650.000</span>
+              <a href="https://wa.me/6285931100080?text=Halo%20KicksLokal,%20saya%20mau%20pesan%20Adidas%20EQ21%20RUN"
+                target="_blank"
                 class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-md">
-                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Nego / Beli
+                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Beli
               </a>
             </div>
           </div>
         </div>
 
-        <!-- NEW PRODUK 21 -->
+        <!-- Produk 6: s(6).jpeg -->
         <div
           class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           <div>
-            <div class="relative bg-gray-200 rounded-xl overflow-hidden mb-4 h-60 flex items-center justify-center">
-              <img src="a (6).jpeg" alt="Skechers Go Walk Arch Fit - Joy - Dale"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">New
-                Rillis</span>
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+              <img src="s (6).jpeg" alt="Skechers Go Walk Arch Fit - Joy - Dale"
+                class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
+              <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-lg">New
+                Release</span>
             </div>
-            <span class="text-xs text-gray-500 font-medium">Walking / Unisex</span>
+            <span class="text-xs text-gray-500 font-medium">Skechers</span>
             <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Skechers Go Walk Arch Fit - Joy - Dale</h3>
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">Arch fit support yang nyaman</p>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Stok Ukuran Ready:</p>
+
+            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 mb-1">Size Ready:</p>
               <div class="flex gap-1.5 flex-wrap">
                 <span
                   class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">41</span>
@@ -1058,39 +387,34 @@
               </div>
             </div>
           </div>
-          <div class="pt-3 border-t border-gray-200/60">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs text-gray-400 line-through">Rp 1.499.000</span>
-              <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded">Hemat Rp 869rb</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-xl font-black text-blue-600">Rp 630.000</span>
-                <span class="block text-[10px] text-green-600 font-semibold">Bisa Nego via Chat</span>
-              </div>
-              <a href="#"
+          <div>
+            <div class="text-xs text-gray-400 line-through mb-0.5">Retail: Rp 1.499.000</div>
+            <div class="flex justify-between items-center pt-2 border-t border-gray-200/60">
+              <span class="text-xl font-black text-blue-600">Rp 530.000</span>
+              <a href="https://wa.me/6285931100080?text=Halo%20KicksLokal,%20saya%20mau%20pesan%20Skechers%20Go%20Walk%20Arch%20Fit%20Joy%20Dale"
+                target="_blank"
                 class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-md">
-                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Nego / Beli
+                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Beli
               </a>
             </div>
           </div>
         </div>
 
-        <!-- NEW PRODUK 22 -->
+        <!-- Produk 7: s(7).jpeg -->
         <div
           class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           <div>
-            <div class="relative bg-gray-200 rounded-xl overflow-hidden mb-4 h-60 flex items-center justify-center">
-              <img src="a (7).jpeg" alt="Nike Downshifter 14 Off white/Metalic Silver"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">New
-                Rillis</span>
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+              <img src="s (7).jpeg" alt="Nike Downshifter 14"
+                class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
+              <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-lg">New
+                Release</span>
             </div>
-            <span class="text-xs text-gray-500 font-medium">Running / Women</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Nike Downshifter 14 Off white/Metalic Silver</h3>
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">Elegan dengan sentuhan silver metalik</p>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Stok Ukuran Ready:</p>
+            <span class="text-xs text-gray-500 font-medium">Nike</span>
+            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Nike Downshifter 14 Off White/Metallic</h3>
+
+            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 mb-1">Size Ready:</p>
               <div class="flex gap-1.5 flex-wrap">
                 <span
                   class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">37.5</span>
@@ -1107,39 +431,34 @@
               </div>
             </div>
           </div>
-          <div class="pt-3 border-t border-gray-200/60">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs text-gray-400 line-through">Rp 949.000</span>
-              <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded">Hemat Rp 279rb</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-xl font-black text-blue-600">Rp 670.000</span>
-                <span class="block text-[10px] text-green-600 font-semibold">Bisa Nego via Chat</span>
-              </div>
-              <a href="#"
+          <div>
+            <div class="text-xs text-gray-400 line-through mb-0.5">Retail: Rp 949.000</div>
+            <div class="flex justify-between items-center pt-2 border-t border-gray-200/60">
+              <span class="text-xl font-black text-blue-600">Rp 570.000</span>
+              <a href="https://wa.me/6285931100080?text=Halo%20KicksLokal,%20saya%20mau%20pesan%20Nike%20Downshifter%2014"
+                target="_blank"
                 class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-md">
-                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Nego / Beli
+                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Beli
               </a>
             </div>
           </div>
         </div>
 
-        <!-- NEW PRODUK 23 -->
+        <!-- Produk 8: s(8).jpeg -->
         <div
           class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           <div>
-            <div class="relative bg-gray-200 rounded-xl overflow-hidden mb-4 h-60 flex items-center justify-center">
-              <img src="a (8).jpeg" alt="Adidas Duramo SL"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">New
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+              <img src="s (8).jpeg" alt="Adidas Duramo SL"
+                class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
+              <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-lg">New
                 Arrival</span>
             </div>
-            <span class="text-xs text-gray-500 font-medium">Running / Casual</span>
+            <span class="text-xs text-gray-500 font-medium">Adidas</span>
             <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Adidas Duramo SL</h3>
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">Gaya ikonik untuk lari sehari-hari</p>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Stok Ukuran Ready:</p>
+
+            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 mb-1">Size Ready:</p>
               <div class="flex gap-1.5 flex-wrap">
                 <span
                   class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">40</span>
@@ -1154,39 +473,34 @@
               </div>
             </div>
           </div>
-          <div class="pt-3 border-t border-gray-200/60">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs text-gray-400 line-through">Rp 900.000</span>
-              <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded">Hemat Rp 250rb</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-xl font-black text-blue-600">Rp 650.000</span>
-                <span class="block text-[10px] text-green-600 font-semibold">Bisa Nego via Chat</span>
-              </div>
-              <a href="#"
+          <div>
+            <div class="text-xs text-gray-400 line-through mb-0.5">Retail: Rp 900.000</div>
+            <div class="flex justify-between items-center pt-2 border-t border-gray-200/60">
+              <span class="text-xl font-black text-blue-600">Rp 550.000</span>
+              <a href="https://wa.me/6285931100080?text=Halo%20KicksLokal,%20saya%20mau%20pesan%20Adidas%20Duramo%20SL"
+                target="_blank"
                 class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-md">
-                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Nego / Beli
+                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Beli
               </a>
             </div>
           </div>
         </div>
 
-        <!-- NEW PRODUK 24 -->
+        <!-- Produk 9: s(9).jpeg -->
         <div
           class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           <div>
-            <div class="relative bg-gray-200 rounded-xl overflow-hidden mb-4 h-60 flex items-center justify-center">
-              <img src="a (9).jpeg" alt="Adidas Cloudfoam Cuxxion - Rapidf"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">New
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+              <img src="s (9).jpeg" alt="Adidas Cloudfoam Cuxxion - Rapidf"
+                class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
+              <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-lg">New
                 Arrival</span>
             </div>
-            <span class="text-xs text-gray-500 font-medium">Casual / Men</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Adidas Cloudfoam Cuxxion - Rapidf</h3>
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">Full black special</p>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Stok Ukuran Ready:</p>
+            <span class="text-xs text-gray-500 font-medium">Adidas</span>
+            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Adidas Cloudfoam Cushion - Rapidfit</h3>
+
+            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 mb-1">Size Ready:</p>
               <div class="flex gap-1.5 flex-wrap">
                 <span
                   class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">38</span>
@@ -1210,39 +524,34 @@
               </div>
             </div>
           </div>
-          <div class="pt-3 border-t border-gray-200/60">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs text-gray-400 line-through">Rp 1.100.000</span>
-              <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded">Hemat Rp 430rb</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-xl font-black text-blue-600">Rp 670.000</span>
-                <span class="block text-[10px] text-green-600 font-semibold">Bisa Nego via Chat</span>
-              </div>
-              <a href="#"
+          <div>
+            <div class="text-xs text-gray-400 line-through mb-0.5">Retail: Rp 1.100.000</div>
+            <div class="flex justify-between items-center pt-2 border-t border-gray-200/60">
+              <span class="text-xl font-black text-blue-600">Rp 570.000</span>
+              <a href="https://wa.me/6285931100080?text=Halo%20KicksLokal,%20saya%20mau%20pesan%20Adidas%20Cloudfoam%20Cushion"
+                target="_blank"
                 class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-md">
-                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Nego / Beli
+                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Beli
               </a>
             </div>
           </div>
         </div>
 
-        <!-- NEW PRODUK 25 -->
+        <!-- Produk 10: s(10).jpeg -->
         <div
           class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           <div>
-            <div class="relative bg-gray-200 rounded-xl overflow-hidden mb-4 h-60 flex items-center justify-center">
-              <img src="a (10).jpeg" alt="Adidas Duramo SL Black"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+              <img src="s (10).jpeg" alt="Adidas Duramo SL Black Restock"
+                class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
               <span
-                class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">RESTOK</span>
+                class="absolute top-3 left-3 bg-green-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Restock</span>
             </div>
-            <span class="text-xs text-gray-500 font-medium">Running / Women</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Adidas Duramo SL Black</h3>
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">Kembali tersedia, performa terbaik</p>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Stok Ukuran Ready:</p>
+            <span class="text-xs text-gray-500 font-medium">Adidas</span>
+            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1">Adidas Duramo SL Black (Restock)</h3>
+
+            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 mb-1">Size Ready:</p>
               <div class="flex gap-1.5 flex-wrap">
                 <span
                   class="bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200">38
@@ -1253,19 +562,14 @@
               </div>
             </div>
           </div>
-          <div class="pt-3 border-t border-gray-200/60">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs text-gray-400 line-through">Rp 900.000</span>
-              <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded">Hemat Rp 250rb</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-xl font-black text-blue-600">Rp 650.000</span>
-                <span class="block text-[10px] text-green-600 font-semibold">Bisa Nego via Chat</span>
-              </div>
-              <a href="#"
+          <div>
+            <div class="text-xs text-gray-400 line-through mb-0.5">Retail: Rp 900.000</div>
+            <div class="flex justify-between items-center pt-2 border-t border-gray-200/60">
+              <span class="text-xl font-black text-blue-600">Rp 550.000</span>
+              <a href="https://wa.me/6285931100080?text=Halo%20KicksLokal,%20saya%20mau%20pesan%20Adidas%20Duramo%20SL%20Black%20Restock"
+                target="_blank"
                 class="bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5 shadow-md">
-                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Nego / Beli
+                <ion-icon name="logo-whatsapp" class="text-base"></ion-icon> Beli
               </a>
             </div>
           </div>
@@ -1301,6 +605,24 @@
     </div>
   </footer>
 
+  <!-- Script untuk Mobile Menu -->
+  <script>
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+
+    // Buka/Tutup menu saat tombol ditekan
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+
+    // Tutup menu otomatis jika salah satu link di klik (agar scroll mulus ke bagian yang dituju)
+    const menuLinks = menu.querySelectorAll('a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.add('hidden');
+      });
+    });
+  </script>
 </body>
 
 </html>
