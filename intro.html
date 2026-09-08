@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<title>ajun - Antar Jemput UNDIP</title>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#0d2246',
+              deep: '#0a1c38'
+            }
+          },
+          fontFamily: {
+            brandRound: ['"Fredoka"', '"Nunito"', 'system-ui', 'sans-serif'],
+            brandMono: ['"Courier Prime"', '"Courier New"', 'Courier', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+<!-- Google Fonts for typography replication -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@700&amp;family=Fredoka:wght@700&amp;display=swap" rel="stylesheet">
+<style data-purpose="base-styling">
+    /* iOS specific viewport fixes and non-selectable UI */
+    body {
+      background-color: #0d2246;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
+      height: 100dvh;
+    }
+    
+    /* Pixel precise subtext letter styling */
+    .subtext-kerning {
+      letter-spacing: 0.16em;
+    }
+  </style>
+</head>
+<body class="bg-[#0d2246] text-white flex flex-col items-center justify-between min-h-screen overflow-hidden antialiased">
+<!-- BEGIN: MainContent -->
+<main class="w-full flex-1 flex flex-col items-center justify-center px-6 relative" data-purpose="splash-container">
+<!-- Direct Reference Image Container (Crisp & High Fidelity) -->
+<div class="flex flex-col items-center justify-center select-none" data-purpose="brand-logo-presentation">
+<!-- Original Brand Graphic Rendered with Native Contrast -->
+<img alt="ajun Antar Jemput UNDIP" class="w-64 max-w-[75vw] h-auto object-contain drop-shadow-sm select-none pointer-events-none" data-purpose="brand-logo-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA193BSJLyNGrfG4mLYKMXPlDczgdUR7jrmltBL44UcU3t6myheHjNHV424YHgsUcwt5tkhcGTUWeI_SpTcR95nXTWvWNX5DAKD0kuUJTIfEpN29nQV3LUpGBBAwq-wRMZkj0-bUhfMIRHwFO-MoZ77HmmFdu3m8Y_751AricnDnvMhsnljr9cBSdXiDZcx638VaC_5-D4H0NW7F_BeOcC9Nf6hkfTg4Wvxjk2Y_eXYZMStLqZHF7n70gl6jUL43NGQ6g">
+</div>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: FooterBranding -->
+<!-- Subtle Mobile Safe Area Spacer -->
+<footer class="pb-8 pt-2 w-full flex flex-col items-center justify-center opacity-40 text-xs tracking-wider" data-purpose="mobile-safe-area-footer">
+<div class="w-12 h-1 bg-white/20 rounded-full mb-2"></div>
+
+</footer>
+<!-- END: FooterBranding -->
+
+
+</body></html>
