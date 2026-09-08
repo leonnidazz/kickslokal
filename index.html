@@ -133,25 +133,28 @@
           <p class="text-gray-500 mt-2">Pilihan sepatu terbaik minggu ini.</p>
         </div>
 
-        <!-- Filter Kategori Sederhana -->
-        <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-          <button
-            class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap">Semua</button>
-          <button
-            class="bg-gray-100 text-gray-600 hover:bg-gray-200 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap">Sneakers</button>
-          <button
-            class="bg-gray-100 text-gray-600 hover:bg-gray-200 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap">Running</button>
-          <button
-            class="bg-gray-100 text-gray-600 hover:bg-gray-200 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap">Casual</button>
+        <!-- Filter Kategori Brand (Interaktif) -->
+        <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide" id="filter-container">
+          <button data-filter="semua"
+            class="filter-btn bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-colors">Semua</button>
+          <button data-filter="nike"
+            class="filter-btn bg-gray-100 text-gray-600 hover:bg-gray-200 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-colors">Nike</button>
+          <button data-filter="adidas"
+            class="filter-btn bg-gray-100 text-gray-600 hover:bg-gray-200 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-colors">Adidas</button>
+          <button data-filter="skechers"
+            class="filter-btn bg-gray-100 text-gray-600 hover:bg-gray-200 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-colors">Skechers</button>
+          <button data-filter="diadora"
+            class="filter-btn bg-gray-100 text-gray-600 hover:bg-gray-200 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-colors">Diadora</button>
         </div>
       </div>
 
-      <!-- Grid 10 Produk -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Grid 10 Produk (Ditambahkan atribut data-brand pada tiap kartu produk) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" id="product-grid">
 
-        <!-- Produk 1: s (1).jpeg -->
+        <!-- Produk 1: Skechers -->
         <div
-          class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          data-brand="skechers">
           <div>
             <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
               <img src="s (1).jpeg" alt="Skechers Equalizer 6.0"
@@ -187,9 +190,10 @@
           </div>
         </div>
 
-        <!-- Produk 2: s (2).jpeg -->
+        <!-- Produk 2: Skechers -->
         <div
-          class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          data-brand="skechers">
           <div>
             <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
               <img src="s (2).jpeg" alt="Skechers Bobs Moda"
@@ -227,9 +231,10 @@
           </div>
         </div>
 
-        <!-- Produk 3: s (3).jpeg -->
+        <!-- Produk 3: Nike -->
         <div
-          class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          data-brand="nike">
           <div>
             <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
               <img src="s (3).jpeg" alt="Nike Downshifter 13"
@@ -269,9 +274,10 @@
           </div>
         </div>
 
-        <!-- Produk 4: s (4).jpeg -->
+        <!-- Produk 4: Skechers -->
         <div
-          class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          data-brand="skechers">
           <div>
             <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
               <img src="s (4).jpeg" alt="Skechers Go Walk 8"
@@ -307,9 +313,10 @@
           </div>
         </div>
 
-        <!-- Produk 5: s (5).jpeg -->
+        <!-- Produk 5: Adidas -->
         <div
-          class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          data-brand="adidas">
           <div>
             <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
               <img src="s (5).jpeg" alt="Adidas EQ21 RUN"
@@ -361,9 +368,10 @@
           </div>
         </div>
 
-        <!-- Produk 6: s (6).jpeg -->
+        <!-- Produk 6: Skechers -->
         <div
-          class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          data-brand="skechers">
           <div>
             <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
               <img src="s (6).jpeg" alt="Skechers Go Walk Arch Fit"
@@ -399,9 +407,10 @@
           </div>
         </div>
 
-        <!-- Produk 7: s (7).jpeg -->
+        <!-- Produk 7: Nike -->
         <div
-          class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          data-brand="nike">
           <div>
             <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
               <img src="s (7).jpeg" alt="Nike Downshifter 14"
@@ -443,9 +452,10 @@
           </div>
         </div>
 
-        <!-- Produk 8: s (8).jpeg -->
+        <!-- Produk 8: Adidas -->
         <div
-          class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          data-brand="adidas">
           <div>
             <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
               <img src="s (8).jpeg" alt="Adidas Duramo SL"
@@ -485,9 +495,10 @@
           </div>
         </div>
 
-        <!-- Produk 9: s (9).jpeg -->
+        <!-- Produk 9: Adidas -->
         <div
-          class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          data-brand="adidas">
           <div>
             <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
               <img src="s (9).jpeg" alt="Adidas Cloudfoam Cushion"
@@ -536,9 +547,10 @@
           </div>
         </div>
 
-        <!-- Produk 10: s (10).jpeg -->
+        <!-- Produk 10: Adidas -->
         <div
-          class="bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          data-brand="adidas">
           <div>
             <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
               <img src="s (10).jpeg" alt="Adidas Duramo SL Black Restock"
@@ -604,7 +616,7 @@
     </div>
   </footer>
 
-  <!-- Script untuk Mobile Menu -->
+  <!-- Script untuk Mobile Menu & Filter Kategori -->
   <script>
     const btn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
@@ -617,6 +629,35 @@
     menuLinks.forEach(link => {
       link.addEventListener('click', () => {
         menu.classList.add('hidden');
+      });
+    });
+
+    // Fitur Filter Brand Produk
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const productCards = document.querySelectorAll('.product-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Hapus kelas aktif dari semua tombol
+        filterButtons.forEach(btn => {
+          btn.classList.remove('bg-blue-600', 'text-white');
+          btn.classList.add('bg-gray-100', 'text-gray-600', 'hover:bg-gray-200');
+        });
+
+        // Tambahkan kelas aktif ke tombol yang diklik
+        button.classList.remove('bg-gray-100', 'text-gray-600', 'hover:bg-gray-200');
+        button.classList.add('bg-blue-600', 'text-white');
+
+        const selectedFilter = button.getAttribute('data-filter');
+
+        productCards.forEach(card => {
+          const productBrand = card.getAttribute('data-brand');
+          if (selectedFilter === 'semua' || productBrand === selectedFilter) {
+            card.style.display = 'flex'; // Tampilkan produk
+          } else {
+            card.style.display = 'none'; // Sembunyikan produk
+          }
+        });
       });
     });
   </script>
