@@ -7,6 +7,11 @@
   <title>KicksLokal | Premium Urban Footwear</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class', // Mengaktifkan dark mode via class
+    }
+  </script>
   <!-- Ionicons untuk ikon modern -->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -43,7 +48,7 @@
       animation: floatBounce 3s ease-in-out infinite;
     }
 
-    /* Efek Huruf Interaktif (Terangkat & Menyala saat disentuh kursor/jari) */
+    /* Efek Huruf Interaktif */
     .interactive-char {
       display: inline-block;
       transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.25s ease;
@@ -54,22 +59,22 @@
     .interactive-char.touched {
       transform: translateY(-10px) scale(1.15);
       color: #60a5fa;
-      /* Tailwind blue-400 */
     }
   </style>
 </head>
 
-<body class="bg-gray-100 text-gray-800 font-grotesk antialiased selection:bg-blue-600 selection:text-white relative">
+<body
+  class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-grotesk antialiased selection:bg-blue-600 selection:text-white relative transition-colors duration-300">
 
   <!-- TOMBOL KERANJANG MENGAMBANG -->
   <button onclick="toggleCart()"
     class="fixed bottom-24 right-6 z-40 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110">
     <ion-icon name="cart-outline" class="text-3xl"></ion-icon>
     <span id="cart-badge"
-      class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center border-2 border-white hidden">0</span>
+      class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center border-2 border-white dark:border-gray-900 hidden">0</span>
   </button>
 
-  <!-- TOMBOL WHATSAPP MENGAMBANG (Dengan Animasi Getar Halus) -->
+  <!-- TOMBOL WHATSAPP MENGAMBANG -->
   <a href="https://wa.me/6285931100080?text=Halo%20KicksLokal,%20saya%20mau%20bertanya%20tentang%20produk."
     target="_blank"
     class="whatsapp-float-anim fixed bottom-6 right-6 z-40 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110">
@@ -77,47 +82,60 @@
   </a>
 
   <!-- HEADER / NAVBAR -->
-  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-200">
+  <header
+    class="sticky top-0 z-40 bg-white/90 dark:bg-gray-950/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
       <div class="flex items-center gap-3">
-        <!-- LOGO KILO! DENGAN EFEK ROTASI & TRANSISI WARNA HALUS -->
         <div
           class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-2xl text-xl font-black tracking-tight shadow-md flex items-center justify-center transition-all duration-300 hover:-rotate-6 hover:scale-105 cursor-pointer">
           Kilo!
         </div>
-        <span class="text-2xl font-black tracking-wider text-gray-900">KicksLokal</span>
+        <span class="text-2xl font-black tracking-wider text-gray-900 dark:text-white">KicksLokal</span>
       </div>
 
       <!-- NAVBAR LINK -->
       <nav class="hidden md:flex items-center gap-8 font-medium">
         <a href="#" onclick="setActiveNav(this)"
-          class="nav-link text-gray-600 hover:text-blue-600 transition-colors">Beranda</a>
+          class="nav-link text-blue-600 font-semibold dark:text-blue-400 transition-colors">Beranda</a>
         <a href="#katalog" onclick="setActiveNav(this)"
-          class="nav-link text-gray-600 hover:text-blue-600 transition-colors">Katalog</a>
+          class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Katalog</a>
         <a href="#fitur" onclick="setActiveNav(this)"
-          class="nav-link text-gray-600 hover:text-blue-600 transition-colors">Keunggulan</a>
+          class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Keunggulan</a>
         <a href="#panduan" onclick="setActiveNav(this)"
-          class="nav-link text-gray-600 hover:text-blue-600 transition-colors">Cara Pesan</a>
+          class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Cara
+          Pesan</a>
         <a href="#tentang" onclick="setActiveNav(this)"
-          class="nav-link text-gray-600 hover:text-blue-600 transition-colors">Tentang Kami</a>
+          class="nav-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Tentang
+          Kami</a>
       </nav>
 
-      <button id="mobile-menu-btn" class="md:hidden text-3xl text-gray-800 focus:outline-none">
-        <ion-icon name="menu-outline"></ion-icon>
-      </button>
+      <div class="flex items-center gap-4">
+        <!-- TOMBOL DARK MODE -->
+        <button id="theme-toggle"
+          class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 text-2xl transition-colors focus:outline-none flex items-center justify-center">
+          <ion-icon name="moon-outline" id="theme-icon"></ion-icon>
+        </button>
+        <button id="mobile-menu-btn"
+          class="md:hidden text-3xl text-gray-800 dark:text-gray-200 focus:outline-none flex items-center justify-center">
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
+      </div>
     </div>
 
     <nav id="mobile-menu"
-      class="hidden md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-4 space-y-3 shadow-lg absolute w-full left-0">
-      <a href="#" onclick="setActiveNav(this)" class="nav-link block text-gray-600 hover:text-blue-600 py-2">Beranda</a>
+      class="hidden md:hidden bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-4 pt-2 pb-4 space-y-3 shadow-lg absolute w-full left-0 transition-colors duration-300">
+      <a href="#" onclick="setActiveNav(this)"
+        class="nav-link block text-blue-600 font-semibold dark:text-blue-400 py-2">Beranda</a>
       <a href="#katalog" onclick="setActiveNav(this)"
-        class="nav-link block text-gray-600 hover:text-blue-600 py-2">Katalog</a>
+        class="nav-link block text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 py-2">Katalog</a>
       <a href="#fitur" onclick="setActiveNav(this)"
-        class="nav-link block text-gray-600 hover:text-blue-600 py-2">Keunggulan</a>
-      <a href="#panduan" onclick="setActiveNav(this)" class="nav-link block text-gray-600 hover:text-blue-600 py-2">Cara
+        class="nav-link block text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 py-2">Keunggulan</a>
+      <a href="#panduan" onclick="setActiveNav(this)"
+        class="nav-link block text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 py-2">Cara
         Pesan</a>
       <a href="#tentang" onclick="setActiveNav(this)"
-        class="nav-link block text-gray-600 hover:text-blue-600 py-2">Tentang Kami</a>
+        class="nav-link block text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 py-2">Tentang
+        Kami</a>
     </nav>
   </header>
 
@@ -131,7 +149,6 @@
       <span class="text-blue-400 font-bold uppercase tracking-widest text-sm mb-3">Authentic Footwear, Curated
         Savings</span>
 
-      <!-- KALIMAT UTAMA DENGAN EFEK HURUF INTERAKTIF -->
       <h1 id="interactive-title" class="text-4xl sm:text-6xl font-black tracking-tight max-w-2xl mb-6 select-none">
         Premium Brands, Smart Pricing, Without the Retail Markup.
       </h1>
@@ -148,66 +165,74 @@
   <!-- KEUNGGULAN / FITUR -->
   <section id="fitur" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-32">
     <div class="text-center max-w-2xl mx-auto mb-12">
-      <span class="text-blue-600 font-bold uppercase tracking-widest text-xs">Kenapa Memilih Kami</span>
-      <h2 class="text-3xl font-black text-gray-900 mt-2">Keunggulan KicksLokal</h2>
-      <p class="text-gray-500 mt-2">Komitmen kami untuk memberikan pengalaman belanja terbaik dan terpercaya.</p>
+      <span class="text-blue-600 dark:text-blue-400 font-bold uppercase tracking-widest text-xs">Kenapa Memilih
+        Kami</span>
+      <h2 class="text-3xl font-black text-gray-900 dark:text-white mt-2">Keunggulan KicksLokal</h2>
+      <p class="text-gray-500 dark:text-gray-400 mt-2">Komitmen kami untuk memberikan pengalaman belanja terbaik dan
+        terpercaya.</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
       <div
-        class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-gray-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+        class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-500 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
         <div>
-          <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl text-2xl flex items-center justify-center mb-6">🥾
-          </div>
-          <h3 class="font-bold text-lg mb-2 text-gray-900">Bangga Buatan & Pilihan</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">Menghadirkan pilihan produk terbaik dan brand ternama
-            berharga bersahabat, sekaligus wujud nyata mendukung kemajuan lokal.</p>
+          <div
+            class="w-14 h-14 bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 rounded-2xl text-2xl flex items-center justify-center mb-6">
+            🥾</div>
+          <h3 class="font-bold text-lg mb-2 text-gray-900 dark:text-white">Bangga Buatan & Pilihan</h3>
+          <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Menghadirkan pilihan produk terbaik dan
+            brand ternama berharga bersahabat, sekaligus wujud nyata mendukung kemajuan lokal.</p>
         </div>
       </div>
       <div
-        class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-gray-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+        class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-500 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
         <div>
-          <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl text-2xl flex items-center justify-center mb-6">🛡️
-          </div>
-          <h3 class="font-bold text-lg mb-2 text-gray-900">Harga Dibawah Pasaran</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">Koleksi pilihan dengan penawaran harga terbaik tanpa biaya
-            tersembunyi.</p>
+          <div
+            class="w-14 h-14 bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 rounded-2xl text-2xl flex items-center justify-center mb-6">
+            🛡️</div>
+          <h3 class="font-bold text-lg mb-2 text-gray-900 dark:text-white">Harga Dibawah Pasaran</h3>
+          <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Koleksi pilihan dengan penawaran harga
+            terbaik tanpa biaya tersembunyi.</p>
         </div>
       </div>
       <div
-        class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-gray-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+        class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-500 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
         <div>
-          <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl text-2xl flex items-center justify-center mb-6">⚡
-          </div>
-          <h3 class="font-bold text-lg mb-2 text-gray-900">Fast-Response Assistance</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">Layanan pelanggan responsif via WhatsApp untuk konsultasi
-            produk hingga ketersediaan ukuran.</p>
+          <div
+            class="w-14 h-14 bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 rounded-2xl text-2xl flex items-center justify-center mb-6">
+            ⚡</div>
+          <h3 class="font-bold text-lg mb-2 text-gray-900 dark:text-white">Fast-Response Assistance</h3>
+          <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Layanan pelanggan responsif via WhatsApp
+            untuk konsultasi produk hingga ketersediaan ukuran.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- KATALOG PRODUK (Total 20 Produk: s (1) s.d. s (20)) -->
-  <section id="katalog" class="py-16 bg-white border-t border-gray-200 scroll-mt-24">
+  <!-- KATALOG PRODUK -->
+  <section id="katalog"
+    class="py-16 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 scroll-mt-24 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <div class="mb-8">
-        <h2 class="text-3xl font-black text-gray-900 mt-1">Koleksi Terbaru</h2>
-        <p class="text-gray-500 mt-2">Cari, filter, pilih ukuran, dan masukkan ke keranjang belanja.</p>
+        <h2 class="text-3xl font-black text-gray-900 dark:text-white mt-1">Koleksi Terbaru</h2>
+        <p class="text-gray-500 dark:text-gray-400 mt-2">Cari, filter, pilih ukuran, dan masukkan ke keranjang belanja.
+        </p>
       </div>
 
-      <!-- PANEL PENCARIAN & FILTER BERSIH -->
-      <div class="bg-gray-50 border border-gray-200 p-5 rounded-2xl mb-10 shadow-sm space-y-5">
+      <!-- PANEL PENCARIAN & FILTER -->
+      <div
+        class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-5 rounded-2xl mb-10 shadow-sm space-y-5 transition-colors duration-300">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div class="relative w-full z-10">
             <input type="text" id="filter-search" placeholder="Cari nama seri, model, atau brand..."
-              class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent text-sm transition-all bg-white shadow-sm">
+              class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm transition-all shadow-sm placeholder-gray-400 dark:placeholder-gray-400">
             <ion-icon name="search-outline"
               class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl"></ion-icon>
           </div>
           <div>
             <select id="sort-price"
-              class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 text-sm cursor-pointer text-gray-700 shadow-sm">
+              class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-600 text-sm cursor-pointer text-gray-700 dark:text-white shadow-sm transition-colors">
               <option value="default">Urutkan: Relevansi Default</option>
               <option value="tinggi-rendah">Harga: Tertinggi ke Terendah</option>
               <option value="rendah-tinggi">Harga: Terendah ke Tertinggi</option>
@@ -216,78 +241,80 @@
         </div>
 
         <div
-          class="flex flex-wrap items-center gap-x-6 gap-y-3 pt-3 border-t border-gray-200 overflow-x-auto pb-2 scrollbar-hide text-sm font-bold tracking-wide">
+          class="flex flex-wrap items-center gap-x-6 gap-y-3 pt-3 border-t border-gray-200 dark:border-gray-700 overflow-x-auto pb-2 scrollbar-hide text-sm font-bold tracking-wide">
           <div class="flex items-center gap-3">
             <button onclick="setCategory('running')" id="cat-running"
-              class="cat-link text-gray-600 hover:text-blue-600 transition-colors uppercase">Running</button>
+              class="cat-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors uppercase">Running</button>
             <button onclick="setCategory('kasual')" id="cat-kasual"
-              class="cat-link text-gray-600 hover:text-blue-600 transition-colors uppercase">Kasual</button>
+              class="cat-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors uppercase">Kasual</button>
             <button onclick="setCategory('sandal')" id="cat-sandal"
-              class="cat-link text-gray-600 hover:text-blue-600 transition-colors uppercase">Sandal</button>
+              class="cat-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors uppercase">Sandal</button>
             <button onclick="setCategory('tas')" id="cat-tas"
-              class="cat-link text-gray-600 hover:text-blue-600 transition-colors uppercase">Tas</button>
+              class="cat-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors uppercase">Tas</button>
           </div>
-          <span class="text-gray-300">|</span>
+          <span class="text-gray-300 dark:text-gray-600">|</span>
           <div class="flex items-center gap-3">
             <button onclick="setFilter('asal', 'lokal')" id="btn-asal-lokal"
-              class="filter-link text-gray-600 hover:text-blue-600 transition-colors uppercase">Lokal</button>
+              class="filter-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors uppercase">Lokal</button>
             <button onclick="setFilter('asal', 'internasional')" id="btn-asal-internasional"
-              class="filter-link text-gray-600 hover:text-blue-600 transition-colors uppercase">Internasional</button>
+              class="filter-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors uppercase">Internasional</button>
           </div>
-          <span class="text-gray-300">|</span>
+          <span class="text-gray-300 dark:text-gray-600">|</span>
           <div class="flex items-center gap-3">
             <button onclick="setFilter('pengguna', 'pria')" id="btn-pengguna-pria"
-              class="filter-link text-gray-600 hover:text-blue-600 transition-colors uppercase">Pria</button>
+              class="filter-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors uppercase">Pria</button>
             <button onclick="setFilter('pengguna', 'wanita')" id="btn-pengguna-wanita"
-              class="filter-link text-gray-600 hover:text-blue-600 transition-colors uppercase">Wanita</button>
+              class="filter-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors uppercase">Wanita</button>
             <button onclick="setFilter('pengguna', 'unisex')" id="btn-pengguna-unisex"
-              class="filter-link text-gray-600 hover:text-blue-600 transition-colors uppercase">Unisex</button>
+              class="filter-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors uppercase">Unisex</button>
             <button onclick="setFilter('pengguna', 'anak')" id="btn-pengguna-anak"
-              class="filter-link text-gray-600 hover:text-blue-600 transition-colors uppercase">Anak</button>
+              class="filter-link text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors uppercase">Anak</button>
           </div>
-          <button onclick="resetAllFilters()" class="text-xs text-red-500 hover:underline font-semibold ml-auto">Reset
-            Filter</button>
+          <button onclick="resetAllFilters()"
+            class="text-xs text-red-500 dark:text-red-400 hover:underline font-semibold ml-auto">Reset Filter</button>
         </div>
       </div>
 
-      <div id="no-result-msg" class="hidden text-center py-12 text-gray-500">
-        <ion-icon name="search-outline" class="text-4xl text-gray-300 mb-3"></ion-icon>
-        <p class="font-medium text-lg text-gray-600">Produk tidak ditemukan</p>
+      <div id="no-result-msg" class="hidden text-center py-12 text-gray-500 dark:text-gray-400">
+        <ion-icon name="search-outline" class="text-4xl text-gray-300 dark:text-gray-600 mb-3"></ion-icon>
+        <p class="font-medium text-lg text-gray-600 dark:text-gray-300">Produk tidak ditemukan</p>
         <p class="text-sm mt-1">Coba sesuaikan kata kunci atau pilihan filter Anda.</p>
       </div>
 
-      <!-- Grid 20 Produk -->
+      <!-- Grid 30 Produk -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" id="product-grid">
 
-        <!-- Produk 1: s (1).jpeg -->
+        <!-- 1-10: s (1).jpeg s.d s (10).jpeg -->
         <div
-          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
           data-brand="skechers" data-price="1034500" data-tipe="kasual" data-asal="internasional" data-pengguna="pria">
           <div>
-            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
               <img src="s (1).jpeg" alt="Skechers Equalizer 6.0"
                 class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
               <span
                 class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Featured</span>
             </div>
-            <span class="text-xs text-gray-500 font-medium">Skechers</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1 product-name">Skechers Equalizer 6.0 - Stoaver</h3>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Pilih Size:</p>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Skechers</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Skechers Equalizer 6.0 -
+              Stoaver</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
               <div class="flex gap-1.5 flex-wrap size-selector">
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">42</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">42</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">45</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">45</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">45.5</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">45.5</button>
               </div>
             </div>
           </div>
           <div>
-            <div class="text-xs text-gray-400 line-through mb-0.5">Rp 1.499.000</div>
-            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60">
-              <span class="text-lg font-black text-blue-600">Rp 1.034.500</span>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 1.499.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 1.034.500</span>
               <button onclick="addToCart(this, 'Skechers Equalizer 6.0 - Stoaver', 1034500)"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
                 Keranjang</button>
@@ -295,35 +322,36 @@
           </div>
         </div>
 
-        <!-- Produk 2: s (2).jpeg -->
         <div
-          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
           data-brand="skechers" data-price="919500" data-tipe="kasual" data-asal="internasional" data-pengguna="wanita">
           <div>
-            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
               <img src="s (2).jpeg" alt="Skechers Bobs Moda"
                 class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
             </div>
-            <span class="text-xs text-gray-500 font-medium">Skechers</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1 product-name">Skechers Bobs Moda Flex Taupe</h3>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Pilih Size:</p>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Skechers</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Skechers Bobs Moda Flex
+              Taupe</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
               <div class="flex gap-1.5 flex-wrap size-selector">
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">40</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">40</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">41</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">41</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">41.5</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">41.5</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">42.5</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">42.5</button>
               </div>
             </div>
           </div>
           <div>
-            <div class="text-xs text-gray-400 line-through mb-0.5">Rp 1.299.000</div>
-            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60">
-              <span class="text-lg font-black text-blue-600">Rp 919.500</span>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 1.299.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 919.500</span>
               <button onclick="addToCart(this, 'Skechers Bobs Moda Flex Taupe', 919500)"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
                 Keranjang</button>
@@ -331,39 +359,40 @@
           </div>
         </div>
 
-        <!-- Produk 3: s (3).jpeg -->
         <div
-          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
           data-brand="nike" data-price="825000" data-tipe="running" data-asal="internasional" data-pengguna="wanita">
           <div>
-            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
               <img src="s (3).jpeg" alt="Nike Downshifter 13"
                 class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
               <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-lg">New
                 Release</span>
             </div>
-            <span class="text-xs text-gray-500 font-medium">Nike</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1 product-name">Nike Downshifter 13 Guava Ice</h3>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Pilih Size:</p>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Nike</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Nike Downshifter 13 Guava
+              Ice</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
               <div class="flex gap-1.5 flex-wrap size-selector">
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">37.5</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">37.5</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">38.5</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">38.5</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">39</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">39</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">40</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">40</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">40.5</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">40.5</button>
               </div>
             </div>
           </div>
           <div>
-            <div class="text-xs text-gray-400 line-through mb-0.5">Rp 1.100.000</div>
-            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60">
-              <span class="text-lg font-black text-blue-600">Rp 825.000</span>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 1.100.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 825.000</span>
               <button onclick="addToCart(this, 'Nike Downshifter 13 Guava Ice', 825000)"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
                 Keranjang</button>
@@ -371,33 +400,34 @@
           </div>
         </div>
 
-        <!-- Produk 4: s (4).jpeg -->
         <div
-          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
           data-brand="skechers" data-price="919500" data-tipe="kasual" data-asal="internasional" data-pengguna="unisex">
           <div>
-            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
               <img src="s (4).jpeg" alt="Skechers Go Walk 8"
                 class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
             </div>
-            <span class="text-xs text-gray-500 font-medium">Skechers</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1 product-name">Skechers Go Walk 8 - Day White</h3>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Pilih Size:</p>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Skechers</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Skechers Go Walk 8 - Day
+              White</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
               <div class="flex gap-1.5 flex-wrap size-selector">
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">40</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">40</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">42.5</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">42.5</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">43</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">43</button>
               </div>
             </div>
           </div>
           <div>
-            <div class="text-xs text-gray-400 line-through mb-0.5">Rp 1.299.000</div>
-            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60">
-              <span class="text-lg font-black text-blue-600">Rp 919.500</span>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 1.299.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 919.500</span>
               <button onclick="addToCart(this, 'Skechers Go Walk 8 - Day White', 919500)"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
                 Keranjang</button>
@@ -405,49 +435,50 @@
           </div>
         </div>
 
-        <!-- Produk 5: s (5).jpeg -->
         <div
-          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
           data-brand="adidas" data-price="975000" data-tipe="running" data-asal="internasional" data-pengguna="pria">
           <div>
-            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
               <img src="s (5).jpeg" alt="Adidas EQ21 RUN"
                 class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
             </div>
-            <span class="text-xs text-gray-500 font-medium">Adidas</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1 product-name">Adidas EQ21 RUN Black Special</h3>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Pilih Size:</p>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Adidas</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Adidas EQ21 RUN Black
+              Special</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
               <div class="flex gap-1.5 flex-wrap size-selector">
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">40
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">40
                   2/3</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">41
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">41
                   1/3</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">42</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">42</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">42
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">42
                   2/3</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">43
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">43
                   1/3</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">44</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">44</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">44
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">44
                   2/3</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">45
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">45
                   1/3</button>
               </div>
             </div>
           </div>
           <div>
-            <div class="text-xs text-gray-400 line-through mb-0.5">Rp 1.300.000</div>
-            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60">
-              <span class="text-lg font-black text-blue-600">Rp 975.000</span>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 1.300.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 975.000</span>
               <button onclick="addToCart(this, 'Adidas EQ21 RUN Black Special', 975000)"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
                 Keranjang</button>
@@ -455,35 +486,35 @@
           </div>
         </div>
 
-        <!-- Produk 6: s (6).jpeg -->
         <div
-          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
           data-brand="skechers" data-price="1014500" data-tipe="kasual" data-asal="internasional"
           data-pengguna="wanita">
           <div>
-            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
               <img src="s (6).jpeg" alt="Skechers Go Walk Arch Fit"
                 class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
             </div>
-            <span class="text-xs text-gray-500 font-medium">Skechers</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1 product-name">Skechers Go Walk Arch Fit - Joy - Dale
-            </h3>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Pilih Size:</p>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Skechers</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Skechers Go Walk Arch Fit
+              - Joy - Dale</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
               <div class="flex gap-1.5 flex-wrap size-selector">
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">41</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">41</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">42</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">42</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">42.5</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">42.5</button>
               </div>
             </div>
           </div>
           <div>
-            <div class="text-xs text-gray-400 line-through mb-0.5">Rp 1.499.000</div>
-            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60">
-              <span class="text-lg font-black text-blue-600">Rp 1.014.500</span>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 1.499.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 1.014.500</span>
               <button onclick="addToCart(this, 'Skechers Go Walk Arch Fit - Joy - Dale', 1014500)"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
                 Keranjang</button>
@@ -491,40 +522,40 @@
           </div>
         </div>
 
-        <!-- Produk 7: s (7).jpeg -->
         <div
-          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
           data-brand="nike" data-price="759500" data-tipe="running" data-asal="internasional" data-pengguna="wanita">
           <div>
-            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
               <img src="s (7).jpeg" alt="Nike Downshifter 14"
                 class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
             </div>
-            <span class="text-xs text-gray-500 font-medium">Nike</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1 product-name">Nike Downshifter 14 Off White / Metalic
-              Silver</h3>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Pilih Size:</p>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Nike</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Nike Downshifter 14 Off
+              White / Metalic Silver</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
               <div class="flex gap-1.5 flex-wrap size-selector">
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">37.5</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">37.5</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">38</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">38</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">38.5</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">38.5</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">39</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">39</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">40</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">40</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">40.5</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">40.5</button>
               </div>
             </div>
           </div>
           <div>
-            <div class="text-xs text-gray-400 line-through mb-0.5">Rp 949.000</div>
-            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60">
-              <span class="text-lg font-black text-blue-600">Rp 759.500</span>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 949.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 759.500</span>
               <button onclick="addToCart(this, 'Nike Downshifter 14 Off White / Metalic Silver', 759500)"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
                 Keranjang</button>
@@ -532,37 +563,37 @@
           </div>
         </div>
 
-        <!-- Produk 8: s (8).jpeg -->
         <div
-          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
           data-brand="adidas" data-price="725000" data-tipe="running" data-asal="internasional" data-pengguna="pria">
           <div>
-            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
               <img src="s (8).jpeg" alt="Adidas Duramo SL"
                 class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
             </div>
-            <span class="text-xs text-gray-500 font-medium">Adidas</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1 product-name">Adidas Duramo SL</h3>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Pilih Size:</p>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Adidas</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Adidas Duramo SL</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
               <div class="flex gap-1.5 flex-wrap size-selector">
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">40</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">40</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">40
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">40
                   2/3</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">41
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">41
                   1/3</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">42</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">42</button>
               </div>
             </div>
           </div>
           <div>
-            <div class="text-xs text-gray-400 line-through mb-0.5">Rp 900.000</div>
-            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60">
-              <span class="text-lg font-black text-blue-600">Rp 725.000</span>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 900.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 725.000</span>
               <button onclick="addToCart(this, 'Adidas Duramo SL', 725000)"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
                 Keranjang</button>
@@ -570,46 +601,47 @@
           </div>
         </div>
 
-        <!-- Produk 9: s (9).jpeg -->
         <div
-          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
           data-brand="adidas" data-price="835000" data-tipe="kasual" data-asal="internasional" data-pengguna="pria">
           <div>
-            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
               <img src="s (9).jpeg" alt="Adidas Cloudfoam Cushion"
                 class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
             </div>
-            <span class="text-xs text-gray-500 font-medium">Adidas</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1 product-name">Adidas Cloudfoam Cushion - Rapidfit</h3>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Pilih Size:</p>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Adidas</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Adidas Cloudfoam Cushion
+              - Rapidfit</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
               <div class="flex gap-1.5 flex-wrap size-selector">
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">38</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">38</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">38
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">38
                   2/3</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">39
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">39
                   1/3</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">40
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">40
                   2/3</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">41
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">41
                   1/3</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">42</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">42</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">42
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">42
                   2/3</button>
               </div>
             </div>
           </div>
           <div>
-            <div class="text-xs text-gray-400 line-through mb-0.5">Rp 1.100.000</div>
-            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60">
-              <span class="text-lg font-black text-blue-600">Rp 835.000</span>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 1.100.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 835.000</span>
               <button onclick="addToCart(this, 'Adidas Cloudfoam Cushion - Rapidfit', 835000)"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
                 Keranjang</button>
@@ -617,35 +649,36 @@
           </div>
         </div>
 
-        <!-- Produk 10: s (10).jpeg -->
         <div
-          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
           data-brand="adidas" data-price="725000" data-tipe="running" data-asal="internasional" data-pengguna="pria">
           <div>
-            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
               <img src="s (10).jpeg" alt="Adidas Duramo SL Black"
                 class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
               <span
                 class="absolute top-3 left-3 bg-green-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">Restock</span>
             </div>
-            <span class="text-xs text-gray-500 font-medium">Adidas</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1 product-name">Adidas Duramo SL Black (Restok)</h3>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Pilih Size:</p>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Adidas</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Adidas Duramo SL Black
+              (Restok)</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
               <div class="flex gap-1.5 flex-wrap size-selector">
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">38
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">38
                   2/3</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">39
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">39
                   1/3</button>
               </div>
             </div>
           </div>
           <div>
-            <div class="text-xs text-gray-400 line-through mb-0.5">Rp 900.000</div>
-            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60">
-              <span class="text-lg font-black text-blue-600">Rp 725.000</span>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 900.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 725.000</span>
               <button onclick="addToCart(this, 'Adidas Duramo SL Black (Restok)', 725000)"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
                 Keranjang</button>
@@ -653,33 +686,35 @@
           </div>
         </div>
 
-        <!-- Produk 11: s (11).jpeg -->
+        <!-- 11-20: s (11).jpeg s.d s (20).jpeg -->
         <div
-          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
           data-brand="nike" data-price="825000" data-tipe="running" data-asal="internasional" data-pengguna="pria">
           <div>
-            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
               <img src="s (11).jpeg" alt="Nike Downshifter 13 Grey Blue"
                 class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
             </div>
-            <span class="text-xs text-gray-500 font-medium">Nike</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1 product-name">Nike Downshifter 13 Grey Blue</h3>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Pilih Size:</p>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Nike</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Nike Downshifter 13 Grey
+              Blue</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
               <div class="flex gap-1.5 flex-wrap size-selector">
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">42.5</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">42.5</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">43</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">43</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">44</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">44</button>
               </div>
             </div>
           </div>
           <div>
-            <div class="text-xs text-gray-400 line-through mb-0.5">Rp 1.100.000</div>
-            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60">
-              <span class="text-lg font-black text-blue-600">Rp 825.000</span>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 1.100.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 825.000</span>
               <button onclick="addToCart(this, 'Nike Downshifter 13 Grey Blue', 825000)"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
                 Keranjang</button>
@@ -687,31 +722,32 @@
           </div>
         </div>
 
-        <!-- Produk 12: s (12).jpeg -->
         <div
-          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
           data-brand="skechers" data-price="964500" data-tipe="kasual" data-asal="internasional" data-pengguna="pria">
           <div>
-            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
               <img src="s (12).jpeg" alt="Skechers Arch Fit 2.0 - Lestur"
                 class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
             </div>
-            <span class="text-xs text-gray-500 font-medium">Skechers</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1 product-name">Skechers Arch Fit 2.0 - Lestur</h3>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Pilih Size:</p>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Skechers</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Skechers Arch Fit 2.0 -
+              Lestur</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
               <div class="flex gap-1.5 flex-wrap size-selector">
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">41</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">41</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">42</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">42</button>
               </div>
             </div>
           </div>
           <div>
-            <div class="text-xs text-gray-400 line-through mb-0.5">Rp 1.399.000</div>
-            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60">
-              <span class="text-lg font-black text-blue-600">Rp 964.500</span>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 1.399.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 964.500</span>
               <button onclick="addToCart(this, 'Skechers Arch Fit 2.0 - Lestur', 964500)"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
                 Keranjang</button>
@@ -719,31 +755,31 @@
           </div>
         </div>
 
-        <!-- Produk 13: s (13).jpeg -->
         <div
-          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
           data-brand="skechers" data-price="787000" data-tipe="running" data-asal="internasional" data-pengguna="pria">
           <div>
-            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
               <img src="s (13).jpeg" alt="Skechers Go Run Consistent 2.0"
                 class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
             </div>
-            <span class="text-xs text-gray-500 font-medium">Skechers</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1 product-name">Skechers Go Run Consistent 2.0 -
-              Empowered</h3>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Pilih Size:</p>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Skechers</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Skechers Go Run
+              Consistent 2.0 - Empowered</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
               <div class="flex gap-1.5 flex-wrap size-selector">
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">43
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">43
                   [27.5cm]</button>
               </div>
             </div>
           </div>
           <div>
-            <div class="text-xs text-gray-400 line-through mb-0.5">Rp 1.099.000</div>
-            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60">
-              <span class="text-lg font-black text-blue-600">Rp 787.000</span>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 1.099.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 787.000</span>
               <button onclick="addToCart(this, 'Skechers Go Run Consistent 2.0 - Empowered', 787000)"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
                 Keranjang</button>
@@ -751,37 +787,37 @@
           </div>
         </div>
 
-        <!-- Produk 14: s (14).jpeg -->
         <div
-          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
           data-brand="nike" data-price="874500" data-tipe="running" data-asal="internasional" data-pengguna="wanita">
           <div>
-            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
               <img src="s (14).jpeg" alt="Nike Interact Run"
                 class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
             </div>
-            <span class="text-xs text-gray-500 font-medium">Nike</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1 product-name">Nike Interact Run</h3>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Pilih Size:</p>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Nike</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Nike Interact Run</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
               <div class="flex gap-1.5 flex-wrap size-selector">
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">38</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">38</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">38.5</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">38.5</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">39</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">39</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">40</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">40</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">40.5</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">40.5</button>
               </div>
             </div>
           </div>
           <div>
-            <div class="text-xs text-gray-400 line-through mb-0.5">Rp 1.119.000</div>
-            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60">
-              <span class="text-lg font-black text-blue-600">Rp 874.500</span>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 1.119.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 874.500</span>
               <button onclick="addToCart(this, 'Nike Interact Run', 874500)"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
                 Keranjang</button>
@@ -789,35 +825,35 @@
           </div>
         </div>
 
-        <!-- Produk 15: s (15).jpeg -->
         <div
-          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
           data-brand="nike" data-price="825000" data-tipe="running" data-asal="internasional" data-pengguna="wanita">
           <div>
-            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
               <img src="s (15).jpeg" alt="Nike Revolution 8"
                 class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
             </div>
-            <span class="text-xs text-gray-500 font-medium">Nike</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1 product-name">Nike Revolution 8</h3>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Pilih Size:</p>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Nike</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Nike Revolution 8</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
               <div class="flex gap-1.5 flex-wrap size-selector">
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">38</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">38</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">38.5</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">38.5</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">40</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">40</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">40.5</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">40.5</button>
               </div>
             </div>
           </div>
           <div>
-            <div class="text-xs text-gray-400 line-through mb-0.5">Rp 1.100.000</div>
-            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60">
-              <span class="text-lg font-black text-blue-600">Rp 825.000</span>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 1.100.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 825.000</span>
               <button onclick="addToCart(this, 'Nike Revolution 8', 825000)"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
                 Keranjang</button>
@@ -825,41 +861,41 @@
           </div>
         </div>
 
-        <!-- Produk 16: s (16).jpeg -->
         <div
-          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
           data-brand="nike" data-price="879500" data-tipe="running" data-asal="internasional" data-pengguna="pria">
           <div>
-            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
               <img src="s (16).jpeg" alt="Nike Run Swift 3"
                 class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
             </div>
-            <span class="text-xs text-gray-500 font-medium">Nike</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1 product-name">Nike Run Swift 3</h3>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Pilih Size:</p>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Nike</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Nike Run Swift 3</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
               <div class="flex gap-1.5 flex-wrap size-selector">
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">41</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">41</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">42</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">42</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">42.5</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">42.5</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">43</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">43</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">44</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">44</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">44.5</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">44.5</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">45</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">45</button>
               </div>
             </div>
           </div>
           <div>
-            <div class="text-xs text-gray-400 line-through mb-0.5">Rp 1.129.000</div>
-            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60">
-              <span class="text-lg font-black text-blue-600">Rp 879.500</span>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 1.129.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 879.500</span>
               <button onclick="addToCart(this, 'Nike Run Swift 3', 879500)"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
                 Keranjang</button>
@@ -867,33 +903,33 @@
           </div>
         </div>
 
-        <!-- Produk 17: s (17).jpeg -->
         <div
-          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
           data-brand="nike" data-price="644500" data-tipe="running" data-asal="internasional" data-pengguna="wanita">
           <div>
-            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
               <img src="s (17).jpeg" alt="Nike Revolution 7"
                 class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
             </div>
-            <span class="text-xs text-gray-500 font-medium">Nike</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1 product-name">Nike Revolution 7</h3>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Pilih Size:</p>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Nike</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Nike Revolution 7</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
               <div class="flex gap-1.5 flex-wrap size-selector">
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">37.5</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">37.5</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">38.5</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">38.5</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">40.5</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">40.5</button>
               </div>
             </div>
           </div>
           <div>
-            <div class="text-xs text-gray-400 line-through mb-0.5">Rp 809.000</div>
-            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60">
-              <span class="text-lg font-black text-blue-600">Rp 644.500</span>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 809.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 644.500</span>
               <button onclick="addToCart(this, 'Nike Revolution 7', 644500)"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
                 Keranjang</button>
@@ -901,33 +937,34 @@
           </div>
         </div>
 
-        <!-- Produk 18: s (18).jpeg -->
         <div
-          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
           data-brand="skechers" data-price="820000" data-tipe="kasual" data-asal="internasional" data-pengguna="pria">
           <div>
-            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
               <img src="s (18).jpeg" alt="Skechers Flection - Weldin"
                 class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
             </div>
-            <span class="text-xs text-gray-500 font-medium">Skechers</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1 product-name">Skechers Flection - Weldin</h3>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Pilih Size:</p>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Skechers</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Skechers Flection -
+              Weldin</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
               <div class="flex gap-1.5 flex-wrap size-selector">
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">40</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">40</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">41</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">41</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">42</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">42</button>
               </div>
             </div>
           </div>
           <div>
-            <div class="text-xs text-gray-400 line-through mb-0.5">Rp 1.100.000</div>
-            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60">
-              <span class="text-lg font-black text-blue-600">Rp 820.000</span>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 1.100.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 820.000</span>
               <button onclick="addToCart(this, 'Skechers Flection - Weldin', 820000)"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
                 Keranjang</button>
@@ -935,37 +972,38 @@
           </div>
         </div>
 
-        <!-- Produk 19: s (19).jpeg -->
         <div
-          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
           data-brand="nike" data-price="839500" data-tipe="running" data-asal="internasional" data-pengguna="pria">
           <div>
-            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
               <img src="s (19).jpeg" alt="Nike Quest 5 Black White"
                 class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
             </div>
-            <span class="text-xs text-gray-500 font-medium">Nike</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1 product-name">Nike Quest 5 Black White</h3>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Pilih Size:</p>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Nike</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Nike Quest 5 Black White
+            </h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
               <div class="flex gap-1.5 flex-wrap size-selector">
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">40</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">40</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">41</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">41</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">42</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">42</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">42.5</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">42.5</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">43</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">43</button>
               </div>
             </div>
           </div>
           <div>
-            <div class="text-xs text-gray-400 line-through mb-0.5">Rp 1.129.000</div>
-            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60">
-              <span class="text-lg font-black text-blue-600">Rp 839.500</span>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 1.129.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 839.500</span>
               <button onclick="addToCart(this, 'Nike Quest 5 Black White', 839500)"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
                 Keranjang</button>
@@ -973,38 +1011,415 @@
           </div>
         </div>
 
-        <!-- Produk 20: s (20).jpeg -->
         <div
-          class="product-card bg-gray-50 rounded-2xl p-4 border border-gray-100 group hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
           data-brand="nike" data-price="974500" data-tipe="running" data-asal="internasional" data-pengguna="wanita">
           <div>
-            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200">
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
               <img src="s (20).jpeg" alt="Nike Zoom Span 3 White Purple"
                 class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
             </div>
-            <span class="text-xs text-gray-500 font-medium">Nike</span>
-            <h3 class="font-bold text-lg text-gray-900 mt-1 mb-1 product-name">Nike Zoom Span 3 White Purple</h3>
-            <div class="bg-blue-50/60 border border-blue-100 rounded-lg p-2 mb-3 mt-2">
-              <p class="text-[11px] font-bold text-blue-700 mb-1">Pilih Size:</p>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Nike</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Nike Zoom Span 3 White
+              Purple</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
               <div class="flex gap-1.5 flex-wrap size-selector">
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">38</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">38</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">38.5</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">38.5</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">39</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">39</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">40</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">40</button>
                 <button onclick="selectSize(this)"
-                  class="size-btn bg-white text-gray-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 transition-colors">40.5</button>
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">40.5</button>
               </div>
             </div>
           </div>
           <div>
-            <div class="text-xs text-gray-400 line-through mb-0.5">Rp 1.299.000</div>
-            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60">
-              <span class="text-lg font-black text-blue-600">Rp 974.500</span>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 1.299.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 974.500</span>
               <button onclick="addToCart(this, 'Nike Zoom Span 3 White Purple', 974500)"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
+                Keranjang</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 21-30: b (1).jpeg s.d b (10).jpeg (10 Produk Tambahan Terbaru) -->
+        <div
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
+          data-brand="skechers" data-price="887000" data-tipe="kasual" data-asal="internasional" data-pengguna="wanita">
+          <div>
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
+              <img src="b (1).jpeg" alt="Skechers Go Walk Flex - Grand Rose"
+                class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
+            </div>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Skechers</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Skechers Go Walk Flex -
+              Grand Rose</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
+              <div class="flex gap-1.5 flex-wrap size-selector">
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">36</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">38.5</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 1.299.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 887.000</span>
+              <button onclick="addToCart(this, 'Skechers Go Walk Flex - Grand Rose', 887000)"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
+                Keranjang</button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
+          data-brand="skechers" data-price="914500" data-tipe="kasual" data-asal="internasional" data-pengguna="pria">
+          <div>
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
+              <img src="b (2).jpeg" alt="Skechers Glide Step - Zefyr Black"
+                class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
+            </div>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Skechers</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Skechers Glide Step -
+              Zefyr Black</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
+              <div class="flex gap-1.5 flex-wrap size-selector">
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">40</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">41</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">42</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">43</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 1.199.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 914.500</span>
+              <button onclick="addToCart(this, 'Skechers Glide Step - Zefyr Black', 914500)"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
+                Keranjang</button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
+          data-brand="nike" data-price="1187000" data-tipe="running" data-asal="internasional" data-pengguna="pria">
+          <div>
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
+              <img src="b (3).jpeg" alt="Nike Zoom Rival Fly 4 Viotect Purple"
+                class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
+            </div>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Nike</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Nike Zoom Rival Fly 4
+              Viotect Purple</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
+              <div class="flex gap-1.5 flex-wrap size-selector">
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">42.5</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 1.599.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 1.187.000</span>
+              <button onclick="addToCart(this, 'Nike Zoom Rival Fly 4 Viotect Purple', 1187000)"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
+                Keranjang</button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
+          data-brand="adidas" data-price="1300000" data-tipe="running" data-asal="internasional" data-pengguna="pria">
+          <div>
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
+              <img src="b (4).jpeg" alt="Adidas Supernova Glide Running Shoes"
+                class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
+            </div>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Adidas</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Adidas Supernova Glide
+              (Mens)</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
+              <div class="flex gap-1.5 flex-wrap size-selector">
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">40
+                  2/3</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">42</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">42
+                  2/3</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">43
+                  1/3</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">44</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 1.800.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 1.300.000</span>
+              <button onclick="addToCart(this, 'Adidas Supernova Glide (Mens)', 1300000)"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
+                Keranjang</button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
+          data-brand="adidas" data-price="1287500" data-tipe="running" data-asal="internasional" data-pengguna="wanita">
+          <div>
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
+              <img src="b (5).jpeg" alt="Adidas Supernova Glide Running Shoes"
+                class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
+            </div>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Adidas</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Adidas Supernova Glide
+              (Womens)</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
+              <div class="flex gap-1.5 flex-wrap size-selector">
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">38</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">38
+                  2/3</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">39
+                  1/3</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 1.800.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 1.287.500</span>
+              <button onclick="addToCart(this, 'Adidas Supernova Glide (Womens)', 1287500)"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
+                Keranjang</button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
+          data-brand="adidas" data-price="725000" data-tipe="running" data-asal="internasional" data-pengguna="pria">
+          <div>
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
+              <img src="b (6).jpeg" alt="Adidas Duramo SL"
+                class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
+            </div>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Adidas</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Adidas Duramo SL</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
+              <div class="flex gap-1.5 flex-wrap size-selector">
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">39
+                  1/3</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">40</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">40
+                  2/3</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">41
+                  1/3</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">42</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">42
+                  2/3</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">43
+                  1/3</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">44</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">44
+                  2/3</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">45
+                  1/3</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">46</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 900.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 725.000</span>
+              <button onclick="addToCart(this, 'Adidas Duramo SL', 725000)"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
+                Keranjang</button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
+          data-brand="nike" data-price="1174500" data-tipe="running" data-asal="internasional" data-pengguna="unisex">
+          <div>
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
+              <img src="b (7).jpeg" alt="Nike Zoom Rival Fly 4 Black White"
+                class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
+            </div>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Nike</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Nike Zoom Rival Fly 4
+              Black White</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
+              <div class="flex gap-1.5 flex-wrap size-selector">
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">38.5</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">42</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 1.599.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 1.174.500</span>
+              <button onclick="addToCart(this, 'Nike Zoom Rival Fly 4 Black White', 1174500)"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
+                Keranjang</button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
+          data-brand="skechers" data-price="919500" data-tipe="kasual" data-asal="internasional" data-pengguna="pria">
+          <div>
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
+              <img src="b (8).jpeg" alt="Skechers Glide Step - PRO SR Black"
+                class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
+            </div>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Skechers</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Skechers Glide Step - PRO
+              SR Black</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
+              <div class="flex gap-1.5 flex-wrap size-selector">
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">41</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">43</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 1.199.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 919.500</span>
+              <button onclick="addToCart(this, 'Skechers Glide Step - PRO SR Black', 919500)"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
+                Keranjang</button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
+          data-brand="skechers" data-price="795000" data-tipe="kasual" data-asal="internasional" data-pengguna="wanita">
+          <div>
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
+              <img src="b (9).jpeg" alt="Skechers Virtue - Stunner"
+                class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
+            </div>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Skechers</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Skechers Virtue - Stunner
+            </h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
+              <div class="flex gap-1.5 flex-wrap size-selector">
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">38</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">39</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 1.100.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 795.000</span>
+              <button onclick="addToCart(this, 'Skechers Virtue - Stunner', 795000)"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
+                Keranjang</button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="product-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 group hover:shadow-xl dark:hover:shadow-gray-900/50 transition-all duration-300 flex flex-col justify-between"
+          data-brand="skechers" data-price="864500" data-tipe="kasual" data-asal="internasional" data-pengguna="pria">
+          <div>
+            <div class="relative rounded-xl overflow-hidden mb-4 h-60 bg-gray-200 dark:bg-gray-700">
+              <img src="b (10).jpeg" alt="Skechers Flection - Shurman"
+                class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
+            </div>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Skechers</span>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mt-1 mb-1 product-name">Skechers Flection -
+              Shurman</h3>
+            <div
+              class="bg-blue-50/60 dark:bg-gray-700/50 border border-blue-100 dark:border-gray-600 rounded-lg p-2 mb-3 mt-2">
+              <p class="text-[11px] font-bold text-blue-700 dark:text-blue-400 mb-1">Pilih Size:</p>
+              <div class="flex gap-1.5 flex-wrap size-selector">
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">39</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">39.5</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">41</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">42</button>
+                <button onclick="selectSize(this)"
+                  class="size-btn bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-200 dark:border-gray-600 transition-colors">43</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="text-xs text-gray-400 dark:text-gray-500 line-through mb-0.5">Rp 1.199.000</div>
+            <div class="flex justify-between items-center pt-1 border-t border-gray-200/60 dark:border-gray-700">
+              <span class="text-lg font-black text-blue-600 dark:text-blue-400">Rp 864.500</span>
+              <button onclick="addToCart(this, 'Skechers Flection - Shurman', 864500)"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-colors flex items-center gap-1 shadow-md">+
                 Keranjang</button>
             </div>
@@ -1016,86 +1431,99 @@
   </section>
 
   <!-- PANEL PANDUAN ALUR PEMESANAN (4 FASE) -->
-  <section id="panduan" class="py-20 bg-gray-50 border-t border-gray-200">
+  <section id="panduan"
+    class="py-20 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-16">
-        <span class="text-blue-600 font-bold uppercase tracking-widest text-xs">Simpel & Transparan</span>
-        <h2 class="text-3xl font-black text-gray-900 mt-2">Alur Pemesanan via WhatsApp</h2>
-        <p class="text-gray-500 mt-2">Ikuti 4 fase mudah di bawah ini untuk memesan produk impian Anda dengan cepat.</p>
+        <span class="text-blue-600 dark:text-blue-400 font-bold uppercase tracking-widest text-xs">Simpel &
+          Transparan</span>
+        <h2 class="text-3xl font-black text-gray-900 dark:text-white mt-2">Alur Pemesanan via WhatsApp</h2>
+        <p class="text-gray-500 dark:text-gray-400 mt-2">Ikuti 4 fase mudah di bawah ini untuk memesan produk impian
+          Anda dengan cepat.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div
-          class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200/80 hover:border-blue-400 hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+          class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-200/80 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-md transition-all duration-300 flex flex-col justify-between">
           <div>
             <div
-              class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl font-black text-lg flex items-center justify-center mb-5">
+              class="w-12 h-12 bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 rounded-xl font-black text-lg flex items-center justify-center mb-5">
               01</div>
-            <h3 class="font-bold text-lg text-gray-900 mb-2">Eksplorasi & Ketertarikan</h3>
-            <ul class="text-gray-500 text-sm space-y-2 list-disc list-inside">
-              <li><strong class="text-gray-700">Masuk Website:</strong> Pilih produk favorit Anda di katalog Kilo!</li>
-              <li><strong class="text-gray-700">Cek Detail & Size:</strong> Cek harga spesial & ukuran tersedia.</li>
-              <li><strong class="text-gray-700">Klik Tombol Beli:</strong> Masukkan keranjang atau langsung klik tombol
-                WhatsApp.</li>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mb-2">Eksplorasi & Ketertarikan</h3>
+            <ul class="text-gray-500 dark:text-gray-400 text-sm space-y-2 list-disc list-inside">
+              <li><strong class="text-gray-700 dark:text-gray-300">Masuk Website:</strong> Pilih produk favorit Anda di
+                katalog Kilo!</li>
+              <li><strong class="text-gray-700 dark:text-gray-300">Cek Detail & Size:</strong> Cek harga spesial &
+                ukuran tersedia.</li>
+              <li><strong class="text-gray-700 dark:text-gray-300">Klik Tombol Beli:</strong> Masukkan keranjang atau
+                langsung klik tombol WhatsApp.</li>
             </ul>
           </div>
-          <div class="mt-6 pt-4 border-t border-gray-100 text-xs font-semibold text-blue-600 uppercase tracking-wider">
+          <div
+            class="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700 text-xs font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
             Fase Website</div>
         </div>
 
         <div
-          class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200/80 hover:border-blue-400 hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+          class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-200/80 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-md transition-all duration-300 flex flex-col justify-between">
           <div>
             <div
-              class="w-12 h-12 bg-green-50 text-green-600 rounded-xl font-black text-lg flex items-center justify-center mb-5">
+              class="w-12 h-12 bg-green-50 dark:bg-gray-700 text-green-600 dark:text-green-400 rounded-xl font-black text-lg flex items-center justify-center mb-5">
               02</div>
-            <h3 class="font-bold text-lg text-gray-900 mb-2">Interaksi & Negosiasi</h3>
-            <ul class="text-gray-500 text-sm space-y-2 list-disc list-inside">
-              <li><strong class="text-gray-700">Pesan Otomatis:</strong> Terhubung ke WhatsApp dengan format pesanan
-                instan.</li>
-              <li><strong class="text-gray-700">Tanya Jawab:</strong> Mimin merespons cepat info stok dan ukuran.</li>
-              <li><strong class="text-gray-700">Tawar Harga:</strong> Nikmati sesi negosiasi santai hingga deal.</li>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mb-2">Interaksi & Negosiasi</h3>
+            <ul class="text-gray-500 dark:text-gray-400 text-sm space-y-2 list-disc list-inside">
+              <li><strong class="text-gray-700 dark:text-gray-300">Pesan Otomatis:</strong> Terhubung ke WhatsApp dengan
+                format pesanan instan.</li>
+              <li><strong class="text-gray-700 dark:text-gray-300">Tanya Jawab:</strong> Mimin merespons cepat info stok
+                dan ukuran.</li>
+              <li><strong class="text-gray-700 dark:text-gray-300">Tawar Harga:</strong> Nikmati sesi negosiasi santai
+                hingga deal.</li>
             </ul>
           </div>
-          <div class="mt-6 pt-4 border-t border-gray-100 text-xs font-semibold text-green-600 uppercase tracking-wider">
+          <div
+            class="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700 text-xs font-semibold text-green-600 dark:text-green-400 uppercase tracking-wider">
             Fase WhatsApp</div>
         </div>
 
         <div
-          class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200/80 hover:border-blue-400 hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+          class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-200/80 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-md transition-all duration-300 flex flex-col justify-between">
           <div>
             <div
-              class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl font-black text-lg flex items-center justify-center mb-5">
+              class="w-12 h-12 bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 rounded-xl font-black text-lg flex items-center justify-center mb-5">
               03</div>
-            <h3 class="font-bold text-lg text-gray-900 mb-2">Kesepakatan & Bayar</h3>
-            <ul class="text-gray-500 text-sm space-y-2 list-disc list-inside">
-              <li><strong class="text-gray-700">Data Kirim:</strong> Kirim format Nama, No. HP, & Alamat lengkap.</li>
-              <li><strong class="text-gray-700">Metode Bayar:</strong> Transfer Bank (BCA/Mandiri/BRI) atau
-                QRIS/E-Wallet.</li>
-              <li><strong class="text-gray-700">Konfirmasi:</strong> Kirim bukti transfer screenshot via chat.</li>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mb-2">Kesepakatan & Bayar</h3>
+            <ul class="text-gray-500 dark:text-gray-400 text-sm space-y-2 list-disc list-inside">
+              <li><strong class="text-gray-700 dark:text-gray-300">Data Kirim:</strong> Kirim format Nama, No. HP, &
+                Alamat lengkap.</li>
+              <li><strong class="text-gray-700 dark:text-gray-300">Metode Bayar:</strong> Transfer Bank
+                (BCA/Mandiri/BRI) atau QRIS/E-Wallet.</li>
+              <li><strong class="text-gray-700 dark:text-gray-300">Konfirmasi:</strong> Kirim bukti transfer screenshot
+                via chat.</li>
             </ul>
           </div>
-          <div class="mt-6 pt-4 border-t border-gray-100 text-xs font-semibold text-blue-600 uppercase tracking-wider">
+          <div
+            class="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700 text-xs font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
             Fase Pembayaran</div>
         </div>
 
         <div
-          class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200/80 hover:border-blue-400 hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+          class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-200/80 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-md transition-all duration-300 flex flex-col justify-between">
           <div>
             <div
-              class="w-12 h-12 bg-purple-50 text-purple-600 rounded-xl font-black text-lg flex items-center justify-center mb-5">
+              class="w-12 h-12 bg-purple-50 dark:bg-gray-700 text-purple-600 dark:text-purple-400 rounded-xl font-black text-lg flex items-center justify-center mb-5">
               04</div>
-            <h3 class="font-bold text-lg text-gray-900 mb-2">Pengemasan & Kirim</h3>
-            <ul class="text-gray-500 text-sm space-y-2 list-disc list-inside">
-              <li><strong class="text-gray-700">Verifikasi & Packing:</strong> Dana dicek, produk di-QC, lalu dipacking
-                aman.</li>
-              <li><strong class="text-gray-700">Kirim Resi:</strong> Paket diserahkan ke kurir & nomor resi dikirim ke
-                Anda.</li>
-              <li><strong class="text-gray-700">Selesai:</strong> Paket tiba dengan aman di tangan Anda!</li>
+            <h3 class="font-bold text-lg text-gray-900 dark:text-white mb-2">Pengemasan & Kirim</h3>
+            <ul class="text-gray-500 dark:text-gray-400 text-sm space-y-2 list-disc list-inside">
+              <li><strong class="text-gray-700 dark:text-gray-300">Verifikasi & Packing:</strong> Dana dicek, produk
+                di-QC, lalu dipacking aman.</li>
+              <li><strong class="text-gray-700 dark:text-gray-300">Kirim Resi:</strong> Paket diserahkan ke kurir &
+                nomor resi dikirim ke Anda.</li>
+              <li><strong class="text-gray-700 dark:text-gray-300">Selesai:</strong> Paket tiba dengan aman di tangan
+                Anda!</li>
             </ul>
           </div>
           <div
-            class="mt-6 pt-4 border-t border-gray-100 text-xs font-semibold text-purple-600 uppercase tracking-wider">
+            class="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700 text-xs font-semibold text-purple-600 dark:text-purple-400 uppercase tracking-wider">
             Fase Pengiriman</div>
         </div>
       </div>
@@ -1134,20 +1562,23 @@
 
   <!-- MODAL KERANJANG BELANJA -->
   <div id="cart-modal"
-    class="hidden fixed inset-0 z-50 bg-gray-900/60 backdrop-blur-sm flex items-center justify-center transition-opacity">
-    <div class="bg-white w-full max-w-md mx-4 rounded-2xl shadow-2xl flex flex-col max-h-[85vh]">
-      <div class="p-4 border-b flex justify-between items-center bg-gray-50 rounded-t-2xl">
-        <h3 class="font-bold text-lg flex items-center gap-2"><ion-icon name="cart"></ion-icon> Keranjang Belanja</h3>
+    class="hidden fixed inset-0 z-50 bg-gray-900/60 dark:bg-black/70 backdrop-blur-sm flex items-center justify-center transition-opacity">
+    <div
+      class="bg-white dark:bg-gray-800 w-full max-w-md mx-4 rounded-2xl shadow-2xl flex flex-col max-h-[85vh] transition-colors duration-300">
+      <div
+        class="p-4 border-b dark:border-gray-700 flex justify-between items-center bg-gray-50 dark:bg-gray-900 rounded-t-2xl">
+        <h3 class="font-bold text-lg text-gray-900 dark:text-white flex items-center gap-2"><ion-icon
+            name="cart"></ion-icon> Keranjang Belanja</h3>
         <button onclick="toggleCart()"
           class="text-gray-400 hover:text-red-500 text-2xl transition-colors">&times;</button>
       </div>
 
-      <div id="cart-items-container" class="p-4 flex-1 overflow-y-auto space-y-3 bg-gray-50/50"></div>
+      <div id="cart-items-container" class="p-4 flex-1 overflow-y-auto space-y-3 bg-gray-50/50 dark:bg-gray-800"></div>
 
-      <div class="p-5 border-t bg-white rounded-b-2xl">
+      <div class="p-5 border-t dark:border-gray-700 bg-white dark:bg-gray-900 rounded-b-2xl">
         <div class="flex justify-between items-center mb-4">
-          <span class="font-medium text-gray-600">Total Harga:</span>
-          <span id="cart-total-price" class="font-black text-2xl text-blue-600">Rp 0</span>
+          <span class="font-medium text-gray-600 dark:text-gray-300">Total Harga:</span>
+          <span id="cart-total-price" class="font-black text-2xl text-blue-600 dark:text-blue-400">Rp 0</span>
         </div>
         <button onclick="checkoutWA()"
           class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-green-500/30">
@@ -1170,11 +1601,39 @@
 
   <!-- SCRIPT UTAMA -->
   <script>
+    // LOGIKA DARK MODE / LIGHT MODE
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const htmlElement = document.documentElement;
+
+    // Cek Preferensi Theme
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      htmlElement.classList.add('dark');
+      themeIcon.setAttribute('name', 'sunny-outline');
+    } else {
+      htmlElement.classList.remove('dark');
+      themeIcon.setAttribute('name', 'moon-outline');
+    }
+
+    // Toggle Theme
+    themeToggleBtn.addEventListener('click', () => {
+      htmlElement.classList.toggle('dark');
+      if (htmlElement.classList.contains('dark')) {
+        localStorage.setItem('theme', 'dark');
+        themeIcon.setAttribute('name', 'sunny-outline');
+      } else {
+        localStorage.setItem('theme', 'light');
+        themeIcon.setAttribute('name', 'moon-outline');
+      }
+    });
+
+    // MENU MOBILE
     const btn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
     btn.addEventListener('click', () => menu.classList.toggle('hidden'));
     menu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => menu.classList.add('hidden')));
 
+    // EFEK HURUF INTERAKTIF (JUDUL HERO)
     const titleEl = document.getElementById('interactive-title');
     if (titleEl) {
       const originalText = titleEl.innerText;
@@ -1196,13 +1655,14 @@
 
     function setActiveNav(clickedElement) {
       document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('text-blue-600', 'font-semibold');
-        link.classList.add('text-gray-600');
+        link.classList.remove('text-blue-600', 'dark:text-blue-400', 'font-semibold');
+        link.classList.add('text-gray-600', 'dark:text-gray-300');
       });
-      clickedElement.classList.remove('text-gray-600');
-      clickedElement.classList.add('text-blue-600', 'font-semibold');
+      clickedElement.classList.remove('text-gray-600', 'dark:text-gray-300');
+      clickedElement.classList.add('text-blue-600', 'dark:text-blue-400', 'font-semibold');
     }
 
+    // FILTER SYSTEM
     const searchInput = document.getElementById('filter-search');
     const sortPriceInput = document.getElementById('sort-price');
     const productGrid = document.getElementById('product-grid');
@@ -1226,27 +1686,27 @@
 
     function updateFilterUI() {
       document.querySelectorAll('.cat-link').forEach(btn => {
-        btn.classList.remove('text-blue-600', 'font-extrabold', 'underline');
-        btn.classList.add('text-gray-600');
+        btn.classList.remove('text-blue-600', 'dark:text-blue-400', 'font-extrabold', 'underline');
+        btn.classList.add('text-gray-600', 'dark:text-gray-300');
       });
       if (activeCategory !== 'semua') {
         let activeCatBtn = document.getElementById(`cat-${activeCategory}`);
         if (activeCatBtn) {
-          activeCatBtn.classList.remove('text-gray-600');
-          activeCatBtn.classList.add('text-blue-600', 'font-extrabold', 'underline');
+          activeCatBtn.classList.remove('text-gray-600', 'dark:text-gray-300');
+          activeCatBtn.classList.add('text-blue-600', 'dark:text-blue-400', 'font-extrabold', 'underline');
         }
       }
       document.querySelectorAll('.filter-link').forEach(btn => {
-        btn.classList.remove('text-blue-600', 'font-extrabold', 'underline');
-        btn.classList.add('text-gray-600');
+        btn.classList.remove('text-blue-600', 'dark:text-blue-400', 'font-extrabold', 'underline');
+        btn.classList.add('text-gray-600', 'dark:text-gray-300');
       });
       for (let group in activeFilters) {
         let val = activeFilters[group];
         if (val !== 'semua') {
           let activeBtn = document.getElementById(`btn-${group}-${val}`);
           if (activeBtn) {
-            activeBtn.classList.remove('text-gray-600');
-            activeBtn.classList.add('text-blue-600', 'font-extrabold', 'underline');
+            activeBtn.classList.remove('text-gray-600', 'dark:text-gray-300');
+            activeBtn.classList.add('text-blue-600', 'dark:text-blue-400', 'font-extrabold', 'underline');
           }
         }
       }
@@ -1308,6 +1768,7 @@
       noResultMsg.classList.toggle('hidden', visibleCount !== 0);
     }
 
+    // SISTEM KERANJANG BELANJA
     let cart = [];
 
     function selectSize(buttonElement) {
@@ -1315,10 +1776,10 @@
       const parent = buttonElement.closest('.size-selector');
       parent.querySelectorAll('.size-btn').forEach(b => {
         b.classList.remove('bg-blue-600', 'text-white', 'border-blue-600', 'selected-size');
-        b.classList.add('bg-white', 'text-gray-700', 'border-blue-200');
+        b.classList.add('bg-white', 'text-gray-700', 'border-blue-200', 'dark:bg-gray-700', 'dark:text-gray-200', 'dark:border-gray-600');
       });
       if (!isAlreadySelected) {
-        buttonElement.classList.remove('bg-white', 'text-gray-700', 'border-blue-200');
+        buttonElement.classList.remove('bg-white', 'text-gray-700', 'border-blue-200', 'dark:bg-gray-700', 'dark:text-gray-200', 'dark:border-gray-600');
         buttonElement.classList.add('bg-blue-600', 'text-white', 'border-blue-600', 'selected-size');
       }
     }
@@ -1337,8 +1798,9 @@
 
       updateCartUI();
       toggleCart();
+      // Reset Button
       selectedSizeBtn.classList.remove('bg-blue-600', 'text-white', 'border-blue-600', 'selected-size');
-      selectedSizeBtn.classList.add('bg-white', 'text-gray-700', 'border-blue-200');
+      selectedSizeBtn.classList.add('bg-white', 'text-gray-700', 'border-blue-200', 'dark:bg-gray-700', 'dark:text-gray-200', 'dark:border-gray-600');
     }
 
     function changeQty(index, amount) {
@@ -1355,23 +1817,23 @@
       let totalPrice = 0, totalItems = 0;
 
       if (cart.length === 0) {
-        container.innerHTML = '<div class="text-center text-gray-500 py-8"><p>Keranjang masih kosong.</p></div>';
+        container.innerHTML = '<div class="text-center text-gray-500 dark:text-gray-400 py-8"><p>Keranjang masih kosong.</p></div>';
       } else {
         cart.forEach((item, index) => {
           const subtotal = item.price * item.qty;
           totalPrice += subtotal;
           totalItems += item.qty;
           container.innerHTML += `
-                        <div class="flex justify-between items-center bg-white p-4 border border-gray-100 rounded-xl shadow-sm">
+                        <div class="flex justify-between items-center bg-white dark:bg-gray-800 p-4 border border-gray-100 dark:border-gray-700 rounded-xl shadow-sm">
                             <div>
-                                <h4 class="font-bold text-sm text-gray-900">${item.name}</h4>
-                                <p class="text-xs text-gray-500 mt-0.5">Size: <span class="font-bold text-gray-700">${item.size}</span></p>
-                                <p class="font-bold text-blue-600 text-sm mt-1">Rp ${subtotal.toLocaleString('id-ID')}</p>
+                                <h4 class="font-bold text-sm text-gray-900 dark:text-white">${item.name}</h4>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Size: <span class="font-bold text-gray-700 dark:text-gray-300">${item.size}</span></p>
+                                <p class="font-bold text-blue-600 dark:text-blue-400 text-sm mt-1">Rp ${subtotal.toLocaleString('id-ID')}</p>
                             </div>
-                            <div class="flex items-center gap-3 bg-gray-50 rounded-lg p-1.5 border border-gray-200">
-                                <button onclick="changeQty(${index}, -1)" class="w-6 h-6 flex items-center justify-center bg-white rounded-md shadow-sm text-gray-600 font-bold hover:text-blue-600">-</button>
-                                <span class="text-sm font-bold w-4 text-center">${item.qty}</span>
-                                <button onclick="changeQty(${index}, 1)" class="w-6 h-6 flex items-center justify-center bg-white rounded-md shadow-sm text-gray-600 font-bold hover:text-blue-600">+</button>
+                            <div class="flex items-center gap-3 bg-gray-50 dark:bg-gray-900 rounded-lg p-1.5 border border-gray-200 dark:border-gray-700">
+                                <button onclick="changeQty(${index}, -1)" class="w-6 h-6 flex items-center justify-center bg-white dark:bg-gray-700 rounded-md shadow-sm text-gray-600 dark:text-gray-300 font-bold hover:text-blue-600 dark:hover:text-blue-400">-</button>
+                                <span class="text-sm font-bold w-4 text-center dark:text-white">${item.qty}</span>
+                                <button onclick="changeQty(${index}, 1)" class="w-6 h-6 flex items-center justify-center bg-white dark:bg-gray-700 rounded-md shadow-sm text-gray-600 dark:text-gray-300 font-bold hover:text-blue-600 dark:hover:text-blue-400">+</button>
                             </div>
                         </div>
                     `;
@@ -1402,6 +1864,7 @@
       window.open(`https://wa.me/6285931100080?text=${encodeURIComponent(text)}`, '_blank');
     }
 
+    // LIGHTBOX
     const lightboxModal = document.getElementById('lightbox-modal');
     const lightboxImg = document.getElementById('lightbox-img');
     document.querySelectorAll('.product-card img').forEach(img => {
