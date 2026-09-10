@@ -15,8 +15,6 @@
     <!-- Ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <!-- Supabase CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
@@ -49,6 +47,44 @@
         .interactive-char:hover, .interactive-char.touched {
             transform: translateY(-10px) scale(1.15);
             color: #60a5fa; 
+        }
+        /* EFEK ESTETIK & PARALLAX PADA PANEL FILTER */
+        .filter-panel-modern {
+            position: relative;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .filter-panel-modern:hover {
+            border-color: rgba(96, 165, 250, 0.4);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3), 0 0 20px rgba(59, 130, 246, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Efek interaktif tombol kategori & filter */
+        .cat-link, .filter-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .cat-link::after, .filter-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #60a5fa;
+            transition: width 0.3s ease;
+        }
+
+        .cat-link:hover::after, .filter-link:hover::after,
+        .cat-link.font-extrabold::after, .filter-link.font-extrabold::after {
+            width: 100%;
         }
     </style>
 </head>
@@ -117,7 +153,45 @@
             </div>
         </div>
     </section>
+<!-- SECTION KEUNGGULAN -->
+    <section id="fitur" class="py-20 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 scroll-mt-24 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-blue-600 dark:text-blue-400 font-bold uppercase tracking-widest text-xs" data-i18n="feat_sub">Mengapa Memilih Kami</span>
+                <h2 class="text-3xl font-black text-gray-900 dark:text-white mt-2" data-i18n="feat_title">Keunggulan KicksLokal</h2>
+                <p class="text-gray-500 dark:text-gray-400 mt-2 text-sm" data-i18n="feat_desc">Komitmen kami untuk menghadirkan pengalaman belanja sepatu terbaik, aman, dan terpercaya.</p>
+            </div>
 
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Kartu 1 -->
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm border border-gray-200/80 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-xl transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <ion-icon name="shield-checkmark-outline"></ion-icon>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 dark:text-white mb-2" data-i18n="feat1_title">100% Original & Terkurasi</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed" data-i18n="feat1_desc">Setiap seri sepatu dipilih secara ketat untuk menjamin keaslian, kualitas, dan standar terbaik.</p>
+                </div>
+
+                <!-- Kartu 2 -->
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm border border-gray-200/80 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-xl transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-green-50 dark:bg-gray-700 text-green-600 dark:text-green-400 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <ion-icon name="pricetag-outline"></ion-icon>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 dark:text-white mb-2" data-i18n="feat2_title">Harga Jauh di Bawah Retail</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed" data-i18n="feat2_desc">Nikmati penawaran harga spesial dan potongan diskon menarik tanpa mengorbankan kualitas.</p>
+                </div>
+
+                <!-- Kartu 3 -->
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm border border-gray-200/80 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-xl transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-purple-50 dark:bg-gray-700 text-purple-600 dark:text-purple-400 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <ion-icon name="chatbubbles-outline"></ion-icon>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 dark:text-white mb-2" data-i18n="feat3_title">Respon Cepat via WhatsApp</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed" data-i18n="feat3_desc">Konsultasi ukuran, ketersediaan stok, dan pemesanan diproses secara cepat dan personal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- KATALOG PRODUK -->
     <section id="katalog" class="py-16 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 scroll-mt-24 transition-colors duration-300 text-left">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -134,14 +208,17 @@
                             class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm shadow-sm placeholder-gray-400 dark:placeholder-gray-400">
                         <ion-icon name="search-outline" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl"></ion-icon>
                     </div>
-                    <div>
-                        <select id="sort-price" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-600 text-sm cursor-pointer text-gray-700 dark:text-white shadow-sm transition-colors">
-                            <option value="terbaru">Urutkan: Terbaru (Default)</option>
-                            <option value="terlama">Urutkan: Terlama</option>
-                            <option value="tinggi-rendah">Harga: Tertinggi ke Terendah</option>
-                            <option value="rendah-tinggi">Harga: Terendah ke Tertinggi</option>
-                        </select>
-                    </div>
+                    <div class="relative">
+    <select id="sort-price" class="w-full pl-4 pr-10 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-600 text-sm cursor-pointer text-gray-700 dark:text-white shadow-sm transition-colors appearance-none">
+        <option value="terbaru">Urutkan: Terbaru (Default)</option>
+        <option value="terlama">Urutkan: Terlama</option>
+        <option value="tinggi-rendah">Harga: Tertinggi ke Terendah</option>
+        <option value="rendah-tinggi">Harga: Terendah ke Tertinggi</option>
+    </select>
+    <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 text-lg flex items-center">
+        <ion-icon name="chevron-down-outline"></ion-icon>
+    </div>
+</div>
                 </div>
 
                 <div class="flex flex-wrap items-center gap-x-6 gap-y-3 pt-3 border-t border-gray-200 dark:border-gray-700 overflow-x-auto pb-2 scrollbar-hide text-sm font-bold tracking-wide">
@@ -1644,26 +1721,6 @@
 
     <!-- SCRIPT UTAMA -->
     <script>
-        // INISIALISASI SUPABASE (Ganti URL dan Anon Key sesuai project Supabase Anda)
-        const SUPABASE_URL = 'https://YOUR_SUPABASE_PROJECT_ID.supabase.co';
-        const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
-        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-        // CONTOH FUNGSI FETCH DATA DARI SUPABASE (Opsional jika ingin load produk dari database)
-        async function fetchProductsFromSupabase() {
-            try {
-                const { data, error } = await supabaseClient.from('products').select('*');
-                if (error) throw error;
-                console.log('Data produk dari Supabase:', data);
-                // Anda bisa merender data ini secara dinamis ke dalam #product-grid jika diinginkan
-            } catch (err) {
-                console.error('Gagal mengambil data Supabase:', err.message);
-            }
-        }
-
-        // Panggil saat halaman dimuat jika ingin langsung sinkronisasi
-        // fetchProductsFromSupabase();
-
         // DARK MODE TOGGLE
         const themeToggleBtn = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
@@ -1949,4 +2006,3 @@
 </body>
 
 </html>
-
